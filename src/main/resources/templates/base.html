@@ -9,17 +9,7 @@
 </head>
 <body>
 <!--Common Header-->
-<ul class="p-4 font-bold space-x-4 bg-gray-800 text-white inline-flex">
-	<li>
-		<a th:href="@{/home}">Home</a>
-	</li>
-	<li>
-		<a th:href="@{/about}">About</a>
-	</li>
-	<li>
-		<a th:href="@{/services}">Services</a>
-	</li>
-</ul>
+<div th:replace="navbar::navbar"></div>
 <!--Main Content-->
 <div class="p-4">
 	<section th:replace="${content}"></section>
