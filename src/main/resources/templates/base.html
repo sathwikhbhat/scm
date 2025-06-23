@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" th:fragment="parent(content, title, script)" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<title th:replace="${title}"></title>
+	<link rel="stylesheet" th:href="@{'/css/output.css'}"/>
+	<link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet"/>
+</head>
+<body>
+<!--Common Header-->
+<ul class="p-4 font-bold space-x-4 bg-gray-800 text-white inline-flex">
+	<li>
+		<a th:href="@{/home}">Home</a>
+	</li>
+	<li>
+		<a th:href="@{/about}">About</a>
+	</li>
+	<li>
+		<a th:href="@{/services}">Services</a>
+	</li>
+</ul>
+<!--Main Content-->
+<div class="p-4">
+	<section th:replace="${content}"></section>
+</div>
+<!--Common Footer-->
+<footer class="p-4 bg-gray-800 text-white text-center">
+	<p>&copy; SCM 2025, All Rights Reserved</p>
+	<script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+	<th:block th:replace="${script}"></th:block>
+</body>
+</html>
