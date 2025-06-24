@@ -8,18 +8,17 @@
 	<link rel="stylesheet" th:href="@{'/css/output.css'}"/>
 	<link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet"/>
 </head>
-<body class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white
-             dark:bg-gradient-to-r dark:from-blue-900 dark:via-purple-900 dark:to-pink-900">
+<!--<body class="flex flex-col min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white-->
+<!--			dark:bg-gradient-to-r dark:from-blue-900 dark:via-purple-900 dark:to-pink-900">-->
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
 <!--Common Header-->
-<div th:replace="navbar::navbar"></div>
+<div th:replace="navbar::header"></div>
 <!--Main Content-->
-<div class="p-4 h-screen w-full ">
+<div class="flex-grow">
 	<section th:replace="${content}"></section>
 </div>
 <!--Common Footer-->
-<footer class="p-4 text-gray-900 text-center bg-white border-gray-200 shadow-sm dark:bg-gray-900 dark:text-white">
-	<p>&copy; SCM 2025, All Rights Reserved</p>
-</footer>
+<div class="mt-auto" th:replace="navbar::footer"></div>
 <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 <th:block th:replace="${script}"></th:block>
 </body>
