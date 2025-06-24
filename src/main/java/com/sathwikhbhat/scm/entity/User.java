@@ -29,11 +29,11 @@ public class User {
     private String about;
     private String profilePictureUrl;
 
-    private boolean enabled = false;
-    private boolean emailVerified = false;
-    private boolean phoneVerified = false;
+    private boolean enabled;
+    private boolean emailVerified;
+    private boolean phoneVerified;
 
-    private Providers provider = Providers.SELF;
+    private Providers provider;
     private String providerId;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
