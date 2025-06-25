@@ -3,7 +3,10 @@ package com.sathwikhbhat.scm.controller;
 import com.sathwikhbhat.scm.entity.User;
 import com.sathwikhbhat.scm.enums.Providers;
 import com.sathwikhbhat.scm.forms.UserForm;
+import com.sathwikhbhat.scm.helpers.Message;
+import com.sathwikhbhat.scm.helpers.MessageType;
 import com.sathwikhbhat.scm.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +64,7 @@ public class PageController {
     }
 
     @PostMapping("/registerUser")
-    public String registerUserPage(@ModelAttribute UserForm userForm) {
+    public String registerUserPage(@ModelAttribute UserForm userForm, HttpSession session) {
         log.info("Registering user: {}", userForm.getName());
         try {
             User user = User.builder()
@@ -81,7 +84,13 @@ public class PageController {
             log.error("Error registering user: {}", e.getMessage());
             return "redirect:/signup?error";
         }
-        return "redirect:/login";
+
+        session.setAttribute("message", Message.builder()
+                .content("Registration successful! Please check your email to verify your account.")
+                .type(MessageType.SUCCESS)
+                .build());
+
+        return "redirect:/signup";
     }
 
 }
