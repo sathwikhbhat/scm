@@ -1,23 +1,23 @@
 <!doctype html>
 <html lang="en" th:fragment="parent(content, title, script)"
-      xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="UTF-8">
-	<meta content="width=device-width, initial-scale=1" name="viewport">
-	<title th:replace="${title}"></title>
-	<link rel="stylesheet" th:href="@{'/css/output.css'}"/>
-	<link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet"/>
-</head>
-<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
-<!--Common Header-->
-<div th:replace="~{navbar::header}"></div>
-<!--Main Content-->
-<div class="flex-grow">
-	<section th:replace="${content}"></section>
-</div>
-<!--Common Footer-->
-<div class="mt-auto" th:replace="~{navbar::footer}"></div>
-<script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-<th:block th:replace="${script}"></th:block>
-</body>
+	  xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<meta content="width=device-width, initial-scale=1" name="viewport">
+		<title th:replace="${title}"></title>
+		<link rel="stylesheet" th:href="@{'/css/output.css'}"/>
+		<link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet"/>
+	</head>
+	<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
+		<!--Common Header-->
+		<div th:replace="~{navbar::header}"></div>
+		<!--Main Content-->
+		<div class="flex-grow">
+			<section th:replace="${content}"></section>
+		</div>
+		<!--Common Footer-->
+		<div class="mt-auto" th:replace="~{navbar::footer}"></div>
+		<script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+		<th:block th:replace="${script}"></th:block>
+	</body>
 </html>

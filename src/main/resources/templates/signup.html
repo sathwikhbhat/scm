@@ -1,95 +1,95 @@
 <!doctype html>
 <html lang="en" th:replace="~{base::parent(~{::#content}, ~{:: title}, ~{:: script})}">
-<head>
-	<title>Signup Page</title>
-</head>
-<body>
-<div id="content">
-	<section class="bg-white dark:bg-gray-900 mt-7">
-		<div class="flex flex-col items-center px-6 py-10 mx-auto lg:py-0">
-			<div class="w-full bg-neutral-50 border-t-8 border-blue-600 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-blue-700">
-				<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-					<div th:replace="~{message::messageBox}"></div>
-					<h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-						Create an account
-					</h1>
-					<form class="space-y-4 md:space-y-6"
-					      th:action="@{'/registerUser'}"
-					      method="post"
-					      th:object="${userForm}">
-						<div>
-							<label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-								Name</label>
-							<input type="text" name="name" id="name" th:field="*{name}"
-							       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-							       placeholder="Name" required="">
+	<head>
+		<title>Signup Page</title>
+	</head>
+	<body>
+		<div id="content">
+			<section class="bg-white dark:bg-gray-900 mt-7">
+				<div class="flex flex-col items-center px-6 py-10 mx-auto lg:py-0">
+					<div class="w-full bg-neutral-50 border-t-8 border-blue-600 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-blue-700">
+						<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+							<div th:replace="~{message::messageBox}"></div>
+							<h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+								Create an account
+							</h1>
+							<form class="space-y-4 md:space-y-6"
+								  th:action="@{'/registerUser'}"
+								  method="post"
+								  th:object="${userForm}">
+								<div>
+									<label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+										Name</label>
+									<input type="text" name="name" id="name" th:field="*{name}"
+										   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+										   placeholder="Name" required="">
+								</div>
+								<div>
+									<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+										email</label>
+									<input type="email" name="email" id="email" th:field="*{email}"
+										   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+										   placeholder="name@company.com" required="">
+								</div>
+								<div>
+									<label for="phoneNumber"
+										   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+										Phone Number</label>
+									<div class="flex items-center bg-gray-50 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600">
+										<span class="px-3 text-sm text-gray-700 dark:text-gray-300 border-r border-gray-300 dark:border-gray-600 select-none">
+											+91
+										</span>
+										<input type="tel" name="phoneNumber" id="phoneNumber" pattern="[6-9]{1}[0-9]{9}"
+											   th:field="*{phoneNumber}"
+											   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+											   placeholder="XXXXXXXXXX" required="">
+									</div>
+								</div>
+								<div>
+									<label for="password"
+										   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+									<input type="password" name="password" id="password" placeholder="••••••••"
+										   th:field="*{password}"
+										   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+										   required="">
+								</div>
+								<div class="flex items-start">
+									<div class="flex items-center h-5">
+										<input id="terms" aria-describedby="terms" type="checkbox"
+											   class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+											   required="">
+									</div>
+									<div class="ml-3 text-sm relative">
+										<label for="terms" class="font-light text-gray-500 dark:text-gray-300">
+											I accept the
+											<span class="relative inline-block group">
+												<a class="font-medium text-primary-600 hover:underline dark:text-primary-500 cursor-pointer">
+													Terms and Conditions
+												</a>
+												<span class="pointer-events-none absolute left-1/2 -translate-x-1/2 -top-14 w-max px-3 py-2 text-xs font-medium text-white bg-amber-950 rounded-lg shadow-lg opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 group-hover:animate-wiggle group-hover:animate-popIn transition-all duration-300 origin-bottom z-10">
+													There are no terms and conditions 🤣
+													<span class="absolute bottom-[-6px] left-1/2 -translate-x-1/2 w-3 h-3 bg-amber-950 rotate-45 z-[-1]"></span>
+												</span>
+											</span>
+										</label>
+									</div>
+								</div>
+								<button type="submit"
+										class="w-full border border-green-500 text-green-600 dark:text-green-400 bg-transparent rounded-lg px-5 py-2.5 text-sm font-medium text-center transition-transform transition-shadow duration-300 ease-in-out transform hover:scale-105 hover:shadow-md cursor-pointer">
+									Create an account
+								</button>
+								<p class="text-sm font-light text-gray-500 dark:text-gray-400">
+									Already have an account?
+									<a th:href="@{/login}"
+									   class="font-medium text-primary-600 text-blue-600 hover:underline dark:text-primary-500">
+										Login here</a>
+								</p>
+							</form>
 						</div>
-						<div>
-							<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-								email</label>
-							<input type="email" name="email" id="email" th:field="*{email}"
-							       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-							       placeholder="name@company.com" required="">
-						</div>
-						<div>
-							<label for="phoneNumber"
-							       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-								Phone Number</label>
-							<div class="flex items-center bg-gray-50 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600">
-                                <span class="px-3 text-sm text-gray-700 dark:text-gray-300 border-r border-gray-300 dark:border-gray-600 select-none">
-                                +91
-                                </span>
-								<input type="tel" name="phoneNumber" id="phoneNumber" pattern="[6-9]{1}[0-9]{9}"
-								       th:field="*{phoneNumber}"
-								       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-								       placeholder="XXXXXXXXXX" required="">
-							</div>
-						</div>
-						<div>
-							<label for="password"
-							       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-							<input type="password" name="password" id="password" placeholder="••••••••"
-							       th:field="*{password}"
-							       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-							       required="">
-						</div>
-						<div class="flex items-start">
-							<div class="flex items-center h-5">
-								<input id="terms" aria-describedby="terms" type="checkbox"
-								       class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-								       required="">
-							</div>
-							<div class="ml-3 text-sm relative">
-								<label for="terms" class="font-light text-gray-500 dark:text-gray-300">
-									I accept the
-									<span class="relative inline-block group">
-                                        <a class="font-medium text-primary-600 hover:underline dark:text-primary-500 cursor-pointer">
-                                            Terms and Conditions
-                                        </a>
-                                         <span class="pointer-events-none absolute left-1/2 -translate-x-1/2 -top-14 w-max px-3 py-2 text-xs font-medium text-white bg-amber-950 rounded-lg shadow-lg opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 group-hover:animate-wiggle group-hover:animate-popIn transition-all duration-300 origin-bottom z-10">
-                                            There are no terms and conditions 🤣
-                                            <span class="absolute bottom-[-6px] left-1/2 -translate-x-1/2 w-3 h-3 bg-amber-950 rotate-45 z-[-1]"></span>
-                                          </span>
-                                     </span>
-								</label>
-							</div>
-						</div>
-						<button type="submit"
-						        class="w-full border border-green-500 text-green-600 dark:text-green-400 bg-transparent rounded-lg px-5 py-2.5 text-sm font-medium text-center transition-transform transition-shadow duration-300 ease-in-out transform hover:scale-105 hover:shadow-md cursor-pointer">
-							Create an account
-						</button>
-						<p class="text-sm font-light text-gray-500 dark:text-gray-400">
-							Already have an account?
-							<a th:href="@{/login}"
-							   class="font-medium text-primary-600 text-blue-600 hover:underline dark:text-primary-500">
-								Login here</a>
-						</p>
-					</form>
+					</div>
 				</div>
-			</div>
+			</section>
 		</div>
-	</section>
-</div>
-<script>console.log("Signup Page")</script>
-</body>
+		<script>console.log("Signup Page")</script>
+	</body>
 </html>
