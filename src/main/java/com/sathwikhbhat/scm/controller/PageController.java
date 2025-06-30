@@ -8,10 +8,12 @@ import com.sathwikhbhat.scm.helpers.MessageType;
 import com.sathwikhbhat.scm.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,8 +66,12 @@ public class PageController {
     }
 
     @PostMapping("/registerUser")
-    public String registerUserPage(@ModelAttribute UserForm userForm, HttpSession session) {
+    public String registerUserPage(@Valid @ModelAttribute UserForm userForm, BindingResult rBindingResult, HttpSession session) {
         log.info("Registering user: {}", userForm.getName());
+        if (rBindingResult.hasErrors()) {
+            log.error("Validation errors: {}", rBindingResult.getAllErrors());
+            return "signup";
+        }
         try {
             User user = User.builder()
                     .name(userForm.getName())

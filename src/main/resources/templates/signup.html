@@ -16,25 +16,29 @@
 							<form class="space-y-4 md:space-y-6"
 								  th:action="@{'/registerUser'}"
 								  method="post"
-								  th:object="${userForm}">
+								  th:object="${userForm}"
+								  novalidate>
 								<div>
-									<label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-										Name</label>
+									<label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Name</label>
 									<input type="text" name="name" id="name" th:field="*{name}"
 										   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										   placeholder="Name" required="">
 								</div>
+								<p th:if="${#fields.hasErrors('name')}"
+								   th:errors="*{name}"
+								   class="text-red-500 text-sm font-medium"></p>
 								<div>
-									<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-										email</label>
+									<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
 									<input type="email" name="email" id="email" th:field="*{email}"
 										   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										   placeholder="name@company.com" required="">
 								</div>
+								<p th:if="${#fields.hasErrors('email')}"
+								   th:errors="*{email}"
+								   class="text-red-500 text-sm font-medium"></p>
 								<div>
 									<label for="phoneNumber"
-										   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-										Phone Number</label>
+										   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Phone Number</label>
 									<div class="flex items-center bg-gray-50 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600">
 										<span class="px-3 text-sm text-gray-700 dark:text-gray-300 border-r border-gray-300 dark:border-gray-600 select-none">
 											+91
@@ -45,6 +49,9 @@
 											   placeholder="XXXXXXXXXX" required="">
 									</div>
 								</div>
+								<p th:if="${#fields.hasErrors('phoneNumber')}"
+								   th:errors="*{phoneNumber}"
+								   class="text-red-500 text-sm font-medium"></p>
 								<div>
 									<label for="password"
 										   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
@@ -53,14 +60,18 @@
 										   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										   required="">
 								</div>
+								<p th:if="${#fields.hasErrors('password')}"
+								   th:errors="*{password}"
+								   class="text-red-500 text-sm font-medium"></p>
 								<div class="flex items-start">
 									<div class="flex items-center h-5">
-										<input id="terms" aria-describedby="terms" type="checkbox"
-											   class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-											   required="">
+										<input type="checkbox"
+											   th:field="*{tnc}"
+											   id="tnc"
+											   class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"/>
 									</div>
 									<div class="ml-3 text-sm relative">
-										<label for="terms" class="font-light text-gray-500 dark:text-gray-300">
+										<label for="tnc" class="font-light text-gray-500 dark:text-gray-300">
 											I accept the
 											<span class="relative inline-block group">
 												<a class="font-medium text-primary-600 hover:underline dark:text-primary-500 cursor-pointer">
@@ -72,8 +83,12 @@
 												</span>
 											</span>
 										</label>
+										<p th:if="${#fields.hasErrors('tnc')}"
+										   th:errors="*{tnc}"
+										   class="text-red-500 text-sm font-medium mt-1"></p>
 									</div>
 								</div>
+
 								<button type="submit"
 										class="w-full border border-green-500 text-green-600 dark:text-green-400 bg-transparent rounded-lg px-5 py-2.5 text-sm font-medium text-center transition-transform transition-shadow duration-300 ease-in-out transform hover:scale-105 hover:shadow-md cursor-pointer">
 									Create an account
@@ -81,8 +96,7 @@
 								<p class="text-sm font-light text-gray-500 dark:text-gray-400">
 									Already have an account?
 									<a th:href="@{/login}"
-									   class="font-medium text-primary-600 text-blue-600 hover:underline dark:text-primary-500">
-										Login here</a>
+									   class="font-medium text-primary-600 text-blue-600 hover:underline dark:text-primary-500">Login here</a>
 								</p>
 							</form>
 						</div>
