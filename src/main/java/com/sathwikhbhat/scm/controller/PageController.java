@@ -26,6 +26,12 @@ public class PageController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping
+    public String index() {
+        log.info("Index page");
+        return "redirect:/home";
+    }
+
     @RequestMapping("/home")
     public String home(Model model) {
         model.addAttribute("name", "Substring Technologies");
