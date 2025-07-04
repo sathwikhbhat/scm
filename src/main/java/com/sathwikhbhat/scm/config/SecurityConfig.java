@@ -36,8 +36,12 @@ public class SecurityConfig {
                         .failureUrl("/login?error=true")
                         .usernameParameter("email")
                         .passwordParameter("password"))
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout=true"))
                 .build();
     }
+
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
