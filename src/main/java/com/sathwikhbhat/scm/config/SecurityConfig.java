@@ -15,15 +15,20 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import java.util.Optional;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     @Autowired
-    UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
+
+    @Autowired
+    private CustomOAuth2SuccessHandler customOAuth2SuccessHandler;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, CustomAuthFailureHandler customAuthFailureHandler) throws Exception {
         return http
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/user/**").authenticated()
@@ -34,11 +39,17 @@ public class SecurityConfig {
                         .loginProcessingUrl("/authenticateUser")
                         .defaultSuccessUrl("/user/dashboard")
                         .failureUrl("/login?error=true")
+                        .failureHandler(customAuthFailureHandler)
                         .usernameParameter("email")
                         .passwordParameter("password"))
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout=true"))
+                .oauth2Login(oauth -> oauth
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/user/dashboard")
+                        .successHandler(customOAuth2SuccessHandler)
+                        .failureUrl("/login?error=true"))
                 .build();
     }
 

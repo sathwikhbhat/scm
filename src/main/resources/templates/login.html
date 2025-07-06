@@ -14,8 +14,47 @@
 								Login to your account
 							</h1>
 
-							<div th:if="${param.error}" class="text-red-500 text-sm font-medium">Invalid Username and Password</div>
-							<div th:if="${param.logout}" class="text-green-500 text-sm font-medium">You have been Logged Out</div>
+							<!--Log Out Message-->
+							<div th:if="${param.logout}" class="text-green-500 text-sm font-medium">
+								You have been Logged Out
+							</div>
+
+							<!--Error Messages-->
+							<div th:if="${param.error}" class="text-red-500 text-sm font-medium">
+								<span th:switch="${param.error[0]}">
+
+									<!-- Provider mismatch -->
+									<span th:case="'provider_mismatch'">
+										<span th:if="${param.expected[0] == 'SELF'}">
+											This email is registered with a password-based account.<br/>
+											You tried logging in with <strong th:text="${param.used[0]}">an OAuth provider</strong>.<br/>
+											Please log in using your email and password instead.
+										</span>
+										<span th:if="${param.expected[0] != 'SELF'}">
+											This email is already registered using
+											<strong th:text="${param.expected[0]}">another provider</strong>.<br/>
+											You tried logging in with
+											<strong th:text="${param.used[0]}">a different provider</strong>.<br/>
+											Please use the correct one to continue.
+										</span>
+									</span>
+
+									<!-- Invalid credentials (Spring default error=true) -->
+									<span th:case="'invalid'">Invalid username or password. Please try again.</span>
+									<span th:case="'true'">Invalid username or password. Please try again.</span>
+
+									<!-- OAuth failed -->
+									<span th:case="'oauth_failed'">
+										Something went wrong with OAuth login. Try again or use another method.
+									</span>
+
+									<!-- Fallback -->
+									<span th:case="*">
+										An unknown error occurred. Please try again.
+									</span>
+
+								</span>
+							</div>
 
 							<form class="space-y-4 md:space-y-6"
 								  th:action="@{'/authenticateUser'}"
@@ -44,6 +83,37 @@
 										class="w-full border border-green-500 text-green-600 dark:text-green-400 bg-transparent rounded-lg px-5 py-2.5 text-sm font-medium text-center transition-transform transition-shadow duration-300 ease-in-out transform hover:scale-105 hover:shadow-md cursor-pointer">
 									Login
 								</button>
+
+								<!-- OAuth Buttons -->
+								<div class="flex flex-col items-center space-y-6 w-full max-w-md mx-auto">
+									<!-- Divider -->
+									<div class="flex items-center w-full text-gray-400">
+										<hr class="flex-grow border-t border-gray-600"/>
+										<span class="px-2 text-sm">or</span>
+										<hr class="flex-grow border-t border-gray-600"/>
+									</div>
+
+									<!-- OAuth Buttons -->
+									<div class="flex justify-center space-x-4 w-full mb-6">
+										<!-- Google -->
+										<a th:href="@{'/oauth2/authorization/google'}"
+										   class="flex items-center justify-center space-x-2 border border-gray-500 text-white text-sm px-4 py-2 rounded-md w-1/2
+										   hover:bg-gray-800 hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer">
+											<img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-5 h-5"/>
+											<span class="w-full text-center">Log in with Google</span>
+										</a>
+
+										<!-- GitHub -->
+										<a th:href="@{'/oauth2/authorization/github'}"
+										   class="flex items-center justify-center space-x-2 border border-gray-500 text-white text-sm px-4 py-2 rounded-md w-1/2
+										   hover:bg-gray-800 hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer">
+											<img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub" class="w-5 h-5"/>
+											<span class="w-full text-center">Log in with GitHub</span>
+										</a>
+									</div>
+								</div>
+
+
 							</form>
 						</div>
 					</div>
