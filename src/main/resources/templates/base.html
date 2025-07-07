@@ -10,7 +10,12 @@
 	</head>
 	<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
 		<!--Common Header-->
-		<div th:replace="~{navbar::header}"></div>
+		<div th:if="${user}">
+			<div th:replace="~{user/navbar::navbar}"></div>
+		</div>
+		<div th:unless="${user}">
+			<div th:replace="~{navbar::header}"></div>
+		</div>
 		<!--Main Content-->
 		<div class="flex-grow">
 			<section th:replace="${content}"></section>

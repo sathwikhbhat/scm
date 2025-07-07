@@ -1,17 +1,17 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" th:replace="~{base::parent(~{::#content}, ~{:: title}, ~{:: script})}">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>User Dashboard</title>
+        <title th:text="${user.name + ' | Dashboard'}">Dashboard</title>
     </head>
     <body>
-        <a th:href="@{/logout}"
-           class="text-white bg-blue-700 cursor-pointer m-2.5 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Logout
-        </a>
-        <h1>This is User Dashboard</h1>
-        <h1 th:text="${user.name}"></h1>
-        <h1 th:text="${user.email}"></h1>
+        <div id="content" class="pl-64 pt-24">
+            <div th:replace="~{user/sidebar::sidebar}"></div>
+            <div class="flex flex-col items-center justify-center h-screen text-3xl space-y-4">
+                <h1>This is a User Dashboard</h1>
+                <h1 th:text="${user.name}"></h1>
+                <h1 th:text="${user.email}"></h1>
+            </div>
+        </div>
+        <script>console.log("User Dashboard Page")</script>
     </body>
 </html>

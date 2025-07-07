@@ -84,35 +84,32 @@
 									Login
 								</button>
 
-								<!-- OAuth Buttons -->
+								<!-- OAuth Section -->
 								<div class="flex flex-col items-center space-y-6 w-full max-w-md mx-auto">
 									<!-- Divider -->
-									<div class="flex items-center w-full text-gray-400">
-										<hr class="flex-grow border-t border-gray-600"/>
+									<div class="flex items-center w-full text-gray-500 dark:text-gray-400">
+										<hr class="flex-grow border-t border-gray-300 dark:border-gray-600"/>
 										<span class="px-2 text-sm">or</span>
-										<hr class="flex-grow border-t border-gray-600"/>
+										<hr class="flex-grow border-t border-gray-300 dark:border-gray-600"/>
 									</div>
 
 									<!-- OAuth Buttons -->
 									<div class="flex justify-center space-x-4 w-full mb-6">
 										<!-- Google -->
 										<a th:href="@{'/oauth2/authorization/google'}"
-										   class="flex items-center justify-center space-x-2 border border-gray-500 text-white text-sm px-4 py-2 rounded-md w-1/2
-										   hover:bg-gray-800 hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer">
+										   class="flex items-center justify-center space-x-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm px-4 py-2 rounded-md w-1/2 hover:bg-gray-200 dark:hover:bg-gray-800 hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer">
 											<img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-5 h-5"/>
 											<span class="w-full text-center">Log in with Google</span>
 										</a>
 
 										<!-- GitHub -->
 										<a th:href="@{'/oauth2/authorization/github'}"
-										   class="flex items-center justify-center space-x-2 border border-gray-500 text-white text-sm px-4 py-2 rounded-md w-1/2
-										   hover:bg-gray-800 hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer">
+										   class="flex items-center justify-center space-x-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm px-4 py-2 rounded-md w-1/2 hover:bg-gray-200 dark:hover:bg-gray-800 hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer">
 											<img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub" class="w-5 h-5"/>
 											<span class="w-full text-center">Log in with GitHub</span>
 										</a>
 									</div>
 								</div>
-
 
 							</form>
 						</div>
