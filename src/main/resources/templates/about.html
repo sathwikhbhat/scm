@@ -1,13 +1,16 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{base::parent(~{::#content}, ~{:: title}, ~{:: script})}">
-    <head>
-        <title>About Page</title>
-    </head>
-    <body>
-        <div id="content" class="pl-64 pt-24">
-            <h1>Welcome to the About Page</h1>
-        </div>
-        <script>console.log("About Page")</script>
-    </body>
+    th:replace="~{base::parent(~{::#content}, ~{:: title}, ~{:: script})}">
+
+<head>
+    <title>About Page</title>
+</head>
+
+<body>
+    <div id="content" class="pl-64 pt-24">
+        <h1>Welcome to the About Page</h1>
+    </div>
+    <script>console.log("About Page")</script>
+</body>
+
 </html>
