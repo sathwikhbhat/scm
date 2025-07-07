@@ -54,21 +54,19 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
         String pictureUrl = null;
         String providerId = null;
 
-        switch (provider) {
-            case GOOGLE -> {
-                email = (String) attributes.get("email");
-                name = (String) attributes.get("name");
-                pictureUrl = (String) attributes.get("picture");
-                providerId = (String) attributes.get("sub");
-            }
-            case GITHUB -> {
-                email = (String) attributes.get("email");
-                name = (String) attributes.get("name");
-                if (name == null || name.isEmpty())
-                    name = (String) attributes.get("login");
-                pictureUrl = (String) attributes.get("avatar_url");
-                providerId = String.valueOf(attributes.get("id"));
-            }
+        if (provider == Providers.GOOGLE) {
+            email = (String) attributes.get("email");
+            name = (String) attributes.get("name");
+            pictureUrl = (String) attributes.get("picture");
+            providerId = (String) attributes.get("sub");
+        }
+        if (provider == Providers.GITHUB) {
+            email = (String) attributes.get("email");
+            name = (String) attributes.get("name");
+            if (name == null || name.isEmpty())
+                name = (String) attributes.get("login");
+            pictureUrl = (String) attributes.get("avatar_url");
+            providerId = String.valueOf(attributes.get("id"));
         }
 
         if (email == null || providerId == null) {
