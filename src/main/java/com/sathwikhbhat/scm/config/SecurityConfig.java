@@ -42,14 +42,14 @@ public class SecurityConfig {
                         .failureHandler(customAuthFailureHandler)
                         .usernameParameter("email")
                         .passwordParameter("password"))
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout=true"))
                 .oauth2Login(oauth -> oauth
                         .loginPage("/login")
                         .defaultSuccessUrl("/user/dashboard")
                         .successHandler(customOAuth2SuccessHandler)
                         .failureUrl("/login?error=true"))
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout=true"))
                 .build();
     }
 

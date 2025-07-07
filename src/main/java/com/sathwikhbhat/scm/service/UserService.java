@@ -36,6 +36,12 @@ public class UserService {
         return userRepository.findById(userId).orElse(null);
     }
 
+    public User getUserByEmail(String email) {
+        log.info("Fetching user with email: {}", email);
+        return userRepository.findByEmail(email.toLowerCase().trim())
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with email: " + email));
+    }
+
     public User updateUser(User user) {
         User user2 = userRepository.findById(user.getUserId())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + user.getUserId()));
