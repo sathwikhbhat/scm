@@ -1,6 +1,7 @@
 package com.sathwikhbhat.scm.helpers;
 
 public enum MessageType {
+
     SUCCESS("green"),
     ERROR("red"),
     WARNING("yellow"),
@@ -27,4 +28,5 @@ public enum MessageType {
     public String getDarkTextClass() {
         return "dark:text-" + color + "-400";
     }
+
 }

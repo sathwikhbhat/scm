@@ -23,4 +23,5 @@ public class SessionHelper {
             log.error("Error removing message from session: {}", e.getMessage());
         }
     }
+
 }
