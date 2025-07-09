@@ -33,8 +33,7 @@ public class PageController {
     }
 
     @RequestMapping("/home")
-    public String home(Model model) {
-        model.addAttribute("name", "Substring Technologies");
+    public String home() {
         log.info("Home page");
         return "home";
     }
