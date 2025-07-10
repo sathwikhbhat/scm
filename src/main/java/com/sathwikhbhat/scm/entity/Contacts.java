@@ -24,14 +24,13 @@ public class Contacts {
     private String address;
     private String pictureUrl;
     private String description;
-    @Builder.Default
-    private boolean isFavourite = false;
+    private boolean favourite;
     private String websiteLink;
     private String linkedinLink;
-    
+
     @ManyToOne
     private User user;
-    
+
     @OneToMany(mappedBy = "contacts", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @Builder.Default
     private List<SocialLinks> links = new ArrayList<>();

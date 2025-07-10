@@ -32,7 +32,7 @@ public class ContactForm {
 
     private MultipartFile profilePicture;
 
-    private boolean isFavorite;
+    private boolean favourite;
 
     @Size(max = 500, message = "Description must be maximum 500 characters")
     @NotBlank(message = "Description cannot be blank")

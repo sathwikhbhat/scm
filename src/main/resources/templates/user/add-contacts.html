@@ -20,7 +20,8 @@
                         <p class="text-gray-900 dark:text-gray-300 mb-10">Fill in the details below to add new contacts.
                         </p>
 
-                        <form th:action="@{/user/contacts/add}" method="post" th:object="${contactForm}" novalidate>
+                        <form th:action="@{'/user/contacts/save'}" method="post" th:object="${contactForm}"
+                            enctype="multipart/form-data" novalidate>
                             <div class="grid gap-6 mb-6 md:grid-cols-2">
                                 <!-- Name -->
                                 <div>
@@ -74,7 +75,7 @@
                                 <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
                                     class="text-red-500 text-sm font-medium"></p>
 
-                                <!-- Website -->
+                                <!-- Website Link-->
                                 <div>
                                     <label for="websiteLink"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Website</label>
@@ -87,7 +88,7 @@
                                 <p th:if="${#fields.hasErrors('websiteLink')}" th:errors="*{websiteLink}"
                                     class="text-red-500 text-sm font-medium"></p>
 
-                                <!-- LinkedIn -->
+                                <!-- LinkedIn Link-->
                                 <div>
                                     <label for="linkedinLink"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LinkedIn</label>
@@ -114,15 +115,13 @@
 
                                 <!-- Favourite -->
                                 <div class="flex items-center mt-8">
-                                    <input type="checkbox" id="isFavourite" name="isFavourite" th:field="*{isFavourite}"
+                                    <input type="checkbox" id="favourite" name="favourite" th:field="*{favourite}"
                                         class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 
                                        dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" />
-                                    <label for="isFavourite"
+                                    <label for="favourite"
                                         class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mark as
                                         Favourite</label>
                                 </div>
-                                <p th:if="${#fields.hasErrors('isFavourite')}" th:errors="*{isFavourite}"
-                                    class="text-red-500 text-sm font-medium"></p>
                             </div>
 
                             <!-- Description -->
