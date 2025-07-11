@@ -1,6 +1,11 @@
 package com.sathwikhbhat.scm.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,7 +29,8 @@ public class Contacts {
     private String address;
     private String pictureUrl;
     private String description;
-    private boolean favourite;
+    @Builder.Default
+    private boolean favourite = false;
     private String websiteLink;
     private String linkedinLink;
 

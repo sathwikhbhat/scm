@@ -1,12 +1,13 @@
 package com.sathwikhbhat.scm.forms;
 
-import org.springframework.web.multipart.MultipartFile;
-
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @AllArgsConstructor
@@ -35,7 +36,6 @@ public class ContactForm {
     private boolean favourite;
 
     @Size(max = 500, message = "Description must be maximum 500 characters")
-    @NotBlank(message = "Description cannot be blank")
     private String description;
 
 }
