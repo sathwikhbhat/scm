@@ -93,6 +93,10 @@ public class PageController {
             log.info("User registered successfully: {}", user.getName());
         } catch (Exception e) {
             log.error("Error registering user: {}", e.getMessage());
+            session.setAttribute("message", Message.builder()
+                    .content("Failed to register user: " + userForm.getName())
+                    .type(MessageType.ERROR)
+                    .build());
             return "redirect:/signup?error";
         }
 
