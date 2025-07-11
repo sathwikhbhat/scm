@@ -32,9 +32,9 @@
                                        block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 
                                        dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Name" required />
+                                    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                                        class="text-red-500 text-sm font-medium"></p>
                                 </div>
-                                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
-                                    class="text-red-500 text-sm font-medium"></p>
 
                                 <!-- Email -->
                                 <div>
@@ -45,9 +45,9 @@
                                        block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 
                                        dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="name@company.com" required />
+                                    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                        class="text-red-500 text-sm font-medium"></p>
                                 </div>
-                                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-                                    class="text-red-500 text-sm font-medium"></p>
 
                                 <!-- Phone -->
                                 <div>
@@ -59,9 +59,9 @@
                                        block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 
                                        dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="XXXXXXXXXX" pattern="[0-9]{10}" required />
+                                    <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"
+                                        class="text-red-500 text-sm font-medium"></p>
                                 </div>
-                                <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"
-                                    class="text-red-500 text-sm font-medium"></p>
 
                                 <!-- Address -->
                                 <div>
@@ -71,9 +71,9 @@
                                        block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 
                                        dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="123, MG Road, Bangalore" required />
+                                    <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
+                                        class="text-red-500 text-sm font-medium"></p>
                                 </div>
-                                <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
-                                    class="text-red-500 text-sm font-medium"></p>
 
                                 <!-- Website Link-->
                                 <div>
@@ -84,9 +84,9 @@
                                        block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 
                                        dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="https://example.com" />
+                                    <p th:if="${#fields.hasErrors('websiteLink')}" th:errors="*{websiteLink}"
+                                        class="text-red-500 text-sm font-medium"></p>
                                 </div>
-                                <p th:if="${#fields.hasErrors('websiteLink')}" th:errors="*{websiteLink}"
-                                    class="text-red-500 text-sm font-medium"></p>
 
                                 <!-- LinkedIn Link-->
                                 <div>
@@ -97,9 +97,9 @@
                                        block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 
                                        dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="https://linkedin.com/in/username" />
+                                    <p th:if="${#fields.hasErrors('linkedinLink')}" th:errors="*{linkedinLink}"
+                                        class="text-red-500 text-sm font-medium"></p>
                                 </div>
-                                <p th:if="${#fields.hasErrors('linkedinLink')}" th:errors="*{linkedinLink}"
-                                    class="text-red-500 text-sm font-medium"></p>
 
                                 <!-- Picture Upload -->
                                 <div>
@@ -131,10 +131,10 @@
                                 <textarea id="description" name="description" th:field="*{description}" rows="4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
                                      block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 
                                      dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Enter a short bio or note here..."></textarea>
+                                    placeholder="Enter a short bio or note about the person here..."></textarea>
+                                <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                                    class="text-red-500 text-sm font-medium"></p>
                             </div>
-                            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
-                                class="text-red-500 text-sm font-medium"></p>
 
                             <!-- Submit -->
                             <button type="submit" name="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 

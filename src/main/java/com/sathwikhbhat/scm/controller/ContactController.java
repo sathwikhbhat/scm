@@ -34,7 +34,7 @@ public class ContactController {
         log.info("Saving contact: {}", contactForm.getName());
         if (rBindingResult.hasErrors()) {
             log.error("Error in contact form: {}", rBindingResult.getAllErrors());
-            return "/user/contacts/add";
+            return "user/add-contacts";
         }
         // try {
 
@@ -44,7 +44,7 @@ public class ContactController {
                 .content("Successfully added contact: " + contactForm.getName())
                 .type(MessageType.SUCCESS)
                 .build());
-        return "redirect:/user/contacts/add";
+        return "redirect:user/add-contacts";
     }
 
 }
