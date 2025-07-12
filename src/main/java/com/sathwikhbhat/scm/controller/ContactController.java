@@ -1,6 +1,7 @@
 package com.sathwikhbhat.scm.controller;
 
 import com.sathwikhbhat.scm.entity.Contacts;
+import com.sathwikhbhat.scm.entity.User;
 import com.sathwikhbhat.scm.forms.ContactForm;
 import com.sathwikhbhat.scm.helpers.Helper;
 import com.sathwikhbhat.scm.helpers.Message;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -39,7 +41,6 @@ public class ContactController {
     @GetMapping("/add")
     public String addContactView(Model model) {
         model.addAttribute("contactForm", new ContactForm());
-
         return "user/add-contacts";
     }
 
@@ -84,6 +85,16 @@ public class ContactController {
                 .type(MessageType.SUCCESS)
                 .build());
         return "redirect:/user/contacts/add";
+    }
+
+    @GetMapping("/all")
+    public String allContacts(Model model, Principal principal) {
+        log.info("Fetching all contacts");
+        String name = Helper.getEmailOfLoggedInUser(principal);
+        User user = userService.getUserByEmail(name);
+        List<Contacts> contacts = contactService.getAllContactsByUser(user);
+        model.addAttribute("contacts", contacts);
+        return "user/all-contacts";
     }
 
 }

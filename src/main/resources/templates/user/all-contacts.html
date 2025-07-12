@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" th:replace="~{base::parent(~{::#content}, ~{:: title}, ~{:: script})}">
+
+<head>
+    <title th:text="${user.name + ' | All Contacts'}">All Contacts</title>
+</head>
+
+<body>
+<div class="pl-64 pt-24" id="content">
+    <div th:replace="~{user/sidebar::sidebar}"></div>
+
+    <div class="contacts mx-15">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <div
+                    class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
+                <label class="sr-only" for="table-search">Search</label>
+                <div class="relative">
+                    <div
+                            class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                        <svg aria-hidden="true" class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                             fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" stroke="currentColor" stroke-linecap="round"
+                                  stroke-linejoin="round" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <input class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="table-search-users"
+                           placeholder="Search for users"
+                           type="text">
+                </div>
+            </div>
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th class="px-20 py-3" scope="col">
+                        Name
+                    </th>
+                    <th class="px-6 py-3" scope="col">
+                        Phone Number
+                    </th>
+                    <th class="px-6 py-3" scope="col">
+                        Email Address
+                    </th>
+                    <th class="px-6 py-3" scope="col">
+                        Description
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600" th:each="contact : ${contacts}"
+                    th:object="${contact}">
+                    <th class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                        scope="row">
+                        <img alt="Profile Pic"
+                             class="w-10 h-10 rounded-full"
+                             th:src="*{pictureUrl} != null ? *{pictureUrl} : '@{/img/default-profile-pic.png}'">
+                        <div class="ml-5 text-base font-semibold" th:text="*{name}">Name</div>
+                    </th>
+                    <td class="px-6 py-4" th:text="*{phoneNumber}">Phone Number</td>
+                    <td class="px-6 py-4" th:text="*{email}">Email Address</td>
+                    <td class="px-6 py-4" th:text="*{description}">Description</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+<script>console.log("All Contacts Page")</script>
+</body>
+
+</html>
