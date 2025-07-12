@@ -111,7 +111,7 @@
                                            dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="contactImage" name="contactImage"
                                            th:field="*{contactImage}"
                                            type="file" />
-                                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">PNG, JPG or JPEG (max ~5MB)
+                                    <p class="mt-1 text-xs text-gray-500 dark:text-gray-300">PNG, JPG or JPEG (max ~5MB)
                                     </p>
                                     <p class="text-red-500 text-sm font-medium mt-1" th:errors="*{contactImage}"
                                        th:if="${#fields.hasErrors('contactImage')}"></p>

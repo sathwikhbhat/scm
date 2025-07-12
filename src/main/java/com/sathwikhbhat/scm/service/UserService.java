@@ -42,22 +42,22 @@ public class UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with email: " + email));
     }
 
-    public User updateUser(User user) {
-        User user2 = userRepository.findById(user.getUserId())
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + user.getUserId()));
-        log.info("Updating user: {}", user);
-        user2.setName(user.getName());
-        user2.setEmail(user.getEmail());
-        user2.setPhoneNumber(user.getPhoneNumber());
-        user2.setAbout(user.getAbout());
-        user2.setProfilePictureUrl(user.getProfilePictureUrl());
-        user2.setEnabled(user.isEnabled());
-        user2.setEmailVerified(user.isEmailVerified());
-        user2.setPhoneVerified(user.isPhoneVerified());
-        user2.setProvider(user.getProvider());
-        user2.setProviderId(user.getProviderId());
+    public User updateUser(User updatedUser) {
+        User user = userRepository.findById(updatedUser.getUserId())
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + updatedUser.getUserId()));
+        log.info("Updating user: {}", updatedUser);
+        user.setName(updatedUser.getName());
+        user.setEmail(updatedUser.getEmail());
+        user.setPhoneNumber(updatedUser.getPhoneNumber());
+        user.setAbout(updatedUser.getAbout());
+        user.setProfilePictureUrl(updatedUser.getProfilePictureUrl());
+        user.setEnabled(updatedUser.isEnabled());
+        user.setEmailVerified(updatedUser.isEmailVerified());
+        user.setPhoneVerified(updatedUser.isPhoneVerified());
+        user.setProvider(updatedUser.getProvider());
+        user.setProviderId(updatedUser.getProviderId());
 
-        return userRepository.save(user2);
+        return userRepository.save(user);
 
     }
 

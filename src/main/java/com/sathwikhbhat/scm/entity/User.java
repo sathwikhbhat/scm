@@ -1,7 +1,13 @@
 package com.sathwikhbhat.scm.entity;
 
 import com.sathwikhbhat.scm.enums.Providers;
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,9 +42,11 @@ public class User {
     private Providers provider;
     private String providerId;
 
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Contacts> contacts = new ArrayList<>();
 
+    @Builder.Default
     private List<String> roles = new ArrayList<>();
 
 }
