@@ -31,7 +31,7 @@ public class ContactForm {
 
     private String linkedinLink;
 
-    private MultipartFile profilePicture;
+    private MultipartFile contactImage;
 
     private boolean favourite;
 

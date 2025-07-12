@@ -6,6 +6,7 @@ import com.sathwikhbhat.scm.helpers.Helper;
 import com.sathwikhbhat.scm.helpers.Message;
 import com.sathwikhbhat.scm.helpers.MessageType;
 import com.sathwikhbhat.scm.service.ContactService;
+import com.sathwikhbhat.scm.service.ImageService;
 import com.sathwikhbhat.scm.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -31,6 +32,9 @@ public class ContactController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ImageService imageService;
 
     @GetMapping("/add")
     public String addContactView(Model model) {
@@ -60,7 +64,7 @@ public class ContactController {
                     .description(contactForm.getDescription())
                     .websiteLink(contactForm.getWebsiteLink())
                     .linkedinLink(contactForm.getLinkedinLink())
-//                    .pictureUrl(contactForm.getPictureUrl())
+                    .pictureUrl(imageService.uploadImage(contactForm.getContactImage()))
                     .user(userService.getUserByEmail(Helper.getEmailOfLoggedInUser(principal)))
                     .build();
 

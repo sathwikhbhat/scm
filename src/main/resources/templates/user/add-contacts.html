@@ -12,7 +12,8 @@
         <div class="pl-4 pr-4 md:pl-10">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
                 <div class="md:col-span-3">
-                    <div class="card block m-20 mt-0 p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 hover:shadow-md 
+                    <div
+                            class="card block m-20 mt-0 p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 hover:shadow-md
                     dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition-all duration-500 ease-in-out">
                         <div th:replace="~{message::messageBox}"></div>
 
@@ -103,14 +104,17 @@
 
                                 <!-- Picture Upload -->
                                 <div>
-                                    <label for="picture"
+                                    <label for="contactImage"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload
                                         Picture</label>
-                                    <input type="file" id="picture" name="picture" accept="image/*"
-                                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 
-                                           dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" />
+                                    <input accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50
+                                           dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="contactImage" name="contactImage"
+                                           th:field="*{contactImage}"
+                                           type="file" />
                                     <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">PNG, JPG or JPEG (max ~5MB)
                                     </p>
+                                    <p class="text-red-500 text-sm font-medium mt-1" th:errors="*{contactImage}"
+                                       th:if="${#fields.hasErrors('contactImage')}"></p>
                                 </div>
 
                                 <!-- Favourite -->
