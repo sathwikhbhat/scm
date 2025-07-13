@@ -50,7 +50,7 @@ public class ContactController {
         if (rBindingResult.hasErrors()) {
             log.error("Error in contact form: {}", rBindingResult.getAllErrors());
             session.setAttribute("message", Message.builder()
-                    .content("Please correct the following errors: " + contactForm.getName())
+                    .content("Please correct the errors: ")
                     .type(MessageType.ERROR)
                     .build());
             return "user/add-contacts";

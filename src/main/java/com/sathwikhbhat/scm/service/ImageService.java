@@ -18,6 +18,10 @@ public class ImageService {
     private Cloudinary cloudinary;
 
     public String uploadImage(MultipartFile contactImage) {
+        if (contactImage == null || contactImage.isEmpty()) {
+            log.info("No image file provided for upload.");
+            return null;
+        }
         try {
             String filename = UUID.randomUUID().toString();
             byte[] data = new byte[contactImage.getInputStream().available()];
