@@ -13,7 +13,7 @@
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
                 <div class="md:col-span-3">
                     <div
-                            class="card block m-20 mt-0 p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 hover:shadow-md
+                        class="card block m-20 mt-0 p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 hover:shadow-md
                     dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition-all duration-500 ease-in-out">
                         <div th:replace="~{message::messageBox}"></div>
 
@@ -32,9 +32,9 @@
                                     <input type="text" id="name" name="name" th:field="*{name}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
                                        block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 
                                        dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                           placeholder="Full Name" required/>
+                                        placeholder="Full Name" required />
                                     <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
-                                       class="text-red-500 text-sm font-medium mt-1"></p>
+                                        class="text-red-500 text-sm font-medium mt-1"></p>
                                 </div>
 
                                 <!-- Email -->
@@ -47,7 +47,7 @@
                                        dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="name@company.com" required />
                                     <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-                                       class="text-red-500 text-sm font-medium mt-1"></p>
+                                        class="text-red-500 text-sm font-medium mt-1"></p>
                                 </div>
 
                                 <!-- Phone -->
@@ -61,7 +61,7 @@
                                        dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="XXXXXXXXXX" pattern="[0-9]{10}" required />
                                     <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"
-                                       class="text-red-500 text-sm font-medium mt-1"></p>
+                                        class="text-red-500 text-sm font-medium mt-1"></p>
                                 </div>
 
                                 <!-- Address -->
@@ -73,7 +73,7 @@
                                        dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="123, MG Road, Bangalore" required />
                                     <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
-                                       class="text-red-500 text-sm font-medium mt-1"></p>
+                                        class="text-red-500 text-sm font-medium mt-1"></p>
                                 </div>
 
                                 <!-- Website Link-->
@@ -86,7 +86,7 @@
                                        dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="https://example.com" />
                                     <p th:if="${#fields.hasErrors('websiteLink')}" th:errors="*{websiteLink}"
-                                       class="text-red-500 text-sm font-medium mt-1"></p>
+                                        class="text-red-500 text-sm font-medium mt-1"></p>
                                 </div>
 
                                 <!-- LinkedIn Link-->
@@ -99,7 +99,7 @@
                                        dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="https://linkedin.com/in/username" />
                                     <p th:if="${#fields.hasErrors('linkedinLink')}" th:errors="*{linkedinLink}"
-                                       class="text-red-500 text-sm font-medium mt-1"></p>
+                                        class="text-red-500 text-sm font-medium mt-1"></p>
                                 </div>
 
                                 <!-- Picture Upload -->
@@ -108,21 +108,20 @@
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload
                                         Picture</label>
                                     <input accept="image/*"
-                                           class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50
+                                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50
                                            dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                           id="contactImage" name="contactImage" th:field="*{contactImage}"
-                                           type="file"/>
+                                        id="contactImage" name="contactImage" th:field="*{contactImage}" type="file" />
                                     <p class="mt-1 text-xs text-gray-500 dark:text-gray-300">PNG, JPG or JPEG (max ~5MB)
                                     </p>
                                     <p class="text-red-500 text-sm font-medium mt-1" th:errors="*{contactImage}"
-                                       th:if="${#fields.hasErrors('contactImage')}"></p>
+                                        th:if="${#fields.hasErrors('contactImage')}"></p>
                                 </div>
 
                                 <!-- Favourite -->
                                 <div class="flex items-center mt-8">
                                     <input type="checkbox" id="favourite" name="favourite" th:field="*{favourite}"
-                                           value="true"
-                                           class="cursor-pointer h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300
+                                        value="true"
+                                        class="cursor-pointer h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300
                                        dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" />
                                     <label for="favourite"
                                         class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mark as
@@ -139,13 +138,14 @@
                                      dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Enter a short bio or note about the person here..."></textarea>
                                 <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
-                                   class="text-red-500 text-sm font-medium mt-1"></p>
+                                    class="text-red-500 text-sm font-medium mt-1"></p>
                             </div>
 
                             <!-- Submit -->
                             <button class="cursor-pointer bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300
                                    font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center
-                                   dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" name="submit" type="submit">
+                                   dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" name="submit"
+                                type="submit">
                                 Add Contact
                             </button>
                         </form>
