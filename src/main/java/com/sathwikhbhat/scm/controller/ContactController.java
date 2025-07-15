@@ -99,6 +99,14 @@ public class ContactController {
         User user = userService.getUserByEmail(name);
         Page<Contacts> contacts = contactService.getAllContactsByUser(user, page, size, sortBy, sortDir);
         model.addAttribute("contacts", contacts);
+
+        model.addAttribute("sortBy", sortBy);
+        model.addAttribute("sortDir", sortDir);
+
+        model.addAttribute("nextSortDirForName", sortBy.equals("name") && sortDir.equals("asc") ? "desc" : "asc");
+        model.addAttribute("nextSortDirForEmail", sortBy.equals("email") && sortDir.equals("asc") ? "desc" : "asc");
+        model.addAttribute("nextSortDirForPhone", sortBy.equals("phoneNumber") && sortDir.equals("asc") ? "desc" : "asc");
+
         return "user/all-contacts";
     }
 
