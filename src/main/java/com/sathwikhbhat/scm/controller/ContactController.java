@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.util.UriUtils;
 
+import java.nio.charset.StandardCharsets;
 import java.security.Principal;
 
 @Slf4j
@@ -93,15 +95,27 @@ public class ContactController {
                               @RequestParam(value = "size", defaultValue = "10") int size,
                               @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
                               @RequestParam(value = "sortDir", defaultValue = "asc") String sortDir,
+                              @RequestParam(value = "query", required = false) String query,
                               Model model, Principal principal) {
         log.info("Fetching all contacts");
         String name = Helper.getEmailOfLoggedInUser(principal);
         User user = userService.getUserByEmail(name);
-        Page<Contacts> contacts = contactService.getAllContactsByUser(user, page, size, sortBy, sortDir);
-        model.addAttribute("contacts", contacts);
 
+        Page<Contacts> contacts;
+
+        if (query != null && !query.trim().isEmpty()) {
+            contacts = contactService.searchContacts(user, query.trim(), page, size, sortBy, sortDir);
+        } else {
+            contacts = contactService.getAllContactsByUser(user, page, size, sortBy, sortDir);
+        }
+
+        model.addAttribute("contacts", contacts);
         model.addAttribute("sortBy", sortBy);
         model.addAttribute("sortDir", sortDir);
+
+        String queryParam = (query != null && !query.isEmpty()) ? "&query=" + UriUtils.encodeQueryParam(query, StandardCharsets.UTF_8) : "";
+        model.addAttribute("queryParam", queryParam);
+
 
         model.addAttribute("nextSortDirForName", sortBy.equals("name") && sortDir.equals("asc") ? "desc" : "asc");
         model.addAttribute("nextSortDirForEmail", sortBy.equals("email") && sortDir.equals("asc") ? "desc" : "asc");
