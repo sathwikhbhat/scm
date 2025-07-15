@@ -128,6 +128,37 @@
                         </tr>
                     </tbody>
                 </table>
+                <nav aria-label="Page navigation" class="flex justify-center mt-10" th:if="${contacts.totalPages > 1}">
+                    <ul class="inline-flex -space-x-px text-sm">
+
+                        <!-- Previous Button -->
+                        <li th:if="${contacts.hasPrevious()}">
+                            <a class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                               th:href="@{'/user/contacts/all?page=' + ${contacts.number - 1} + '&size=' + ${contacts.size}}">
+                                Previous
+                            </a>
+                        </li>
+
+                        <!-- Page Numbers -->
+                        <li th:classappend="${index == contacts.number} ? 'bg-blue-500 text-white hover:bg-blue-600 border-blue-500' : ''"
+                            th:each="index : ${#numbers.sequence(0, contacts.totalPages - 1)}">
+                            <a class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                               th:attr="aria-current=${index == contacts.number} ? 'page' : null"
+                               th:href="@{'/user/contacts/all?page=' + ${index} + '&size=' + ${contacts.size}}">
+                                <span th:text="${index + 1}"></span>
+                            </a>
+                        </li>
+
+                        <!-- Next Button -->
+                        <li th:if="${contacts.hasNext()}">
+                            <a class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                               th:href="@{'/user/contacts/all?page=' + ${contacts.number + 1} + '&size=' + ${contacts.size}}">
+                                Next
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
             </div>
 
         </div>

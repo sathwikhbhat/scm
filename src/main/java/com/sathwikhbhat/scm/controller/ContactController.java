@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,9 +21,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
-import java.util.List;
 
 @Slf4j
 @Controller
@@ -88,11 +89,15 @@ public class ContactController {
     }
 
     @GetMapping("/all")
-    public String allContacts(Model model, Principal principal) {
+    public String allContacts(@RequestParam(value = "page", defaultValue = "0") int page,
+                              @RequestParam(value = "size", defaultValue = "10") int size,
+                              @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
+                              @RequestParam(value = "sortDir", defaultValue = "asc") String sortDir,
+                              Model model, Principal principal) {
         log.info("Fetching all contacts");
         String name = Helper.getEmailOfLoggedInUser(principal);
         User user = userService.getUserByEmail(name);
-        List<Contacts> contacts = contactService.getAllContactsByUser(user);
+        Page<Contacts> contacts = contactService.getAllContactsByUser(user, page, size, sortBy, sortDir);
         model.addAttribute("contacts", contacts);
         return "user/all-contacts";
     }
