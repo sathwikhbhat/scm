@@ -77,6 +77,14 @@ public class PageController {
             log.error("Validation errors: {}", rBindingResult.getAllErrors());
             return "signup";
         }
+        if (userService.userExistsByEmail(userForm.getEmail())) {
+            log.error("Duplicate User: {}", userForm.getEmail());
+            session.setAttribute("message", Message.builder()
+                    .content("Email I'd " + userForm.getEmail() + " already registered with us. Please try with a different email.")
+                    .type(MessageType.WARNING)
+                    .build());
+            return "redirect:/signup?error";
+        }
         try {
             User user = User.builder()
                     .name(userForm.getName())
