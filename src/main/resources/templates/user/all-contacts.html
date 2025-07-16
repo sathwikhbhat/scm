@@ -15,26 +15,26 @@
                     class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
                     <div>
                         <button
-                                class="cursor-pointer inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                                data-dropdown-toggle="dropdownAction" id="dropdownActionButton" type="button">
+                            class="cursor-pointer inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                            data-dropdown-toggle="dropdownAction" id="dropdownActionButton" type="button">
                             <span class="sr-only">Sort button</span>
                             Sort by
                             <svg aria-hidden="true" class="w-2.5 h-2.5 ms-2.5" fill="none" viewBox="0 0 10 6"
-                                 xmlns="http://www.w3.org/2000/svg">
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path d="m1 1 4 4 4-4" stroke="currentColor" stroke-linecap="round"
-                                      stroke-linejoin="round" stroke-width="2"/>
+                                    stroke-linejoin="round" stroke-width="2" />
                             </svg>
                         </button>
                         <!-- Dropdown menu -->
                         <div class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600"
-                             id="dropdownAction">
+                            id="dropdownAction">
                             <ul aria-labelledby="dropdownActionButton"
                                 class="py-1 text-sm text-gray-700 dark:text-gray-200">
 
                                 <!-- Sort by Name -->
                                 <li>
                                     <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                       th:href="@{'/user/contacts/all?page=0&size=' + ${contacts.size} + '&sortBy=name&sortDir=' + ${nextSortDirForName} + ${queryParam}}">
+                                        th:href="@{'/user/contacts/all?page=0&size=' + ${contacts.size} + '&sortBy=name&sortDir=' + ${nextSortDirForName} + ${queryParam}}">
                                         Name
                                         <span th:if="${sortBy} == 'name'">
                                             <span th:text="${sortDir} == 'asc' ? '↑' : '↓'"></span>
@@ -45,7 +45,7 @@
                                 <!-- Sort by Email -->
                                 <li>
                                     <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                       th:href="@{'/user/contacts/all?page=0&size=' + ${contacts.size} + '&sortBy=email&sortDir=' + ${nextSortDirForEmail} + ${queryParam}}">
+                                        th:href="@{'/user/contacts/all?page=0&size=' + ${contacts.size} + '&sortBy=email&sortDir=' + ${nextSortDirForEmail} + ${queryParam}}">
                                         Email Address
                                         <span th:if="${sortBy} == 'email'">
                                             <span th:text="${sortDir} == 'asc' ? '↑' : '↓'"></span>
@@ -56,7 +56,7 @@
                                 <!-- Sort by Phone Number -->
                                 <li>
                                     <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                       th:href="@{'/user/contacts/all?page=0&size=' + ${contacts.size} + '&sortBy=phoneNumber&sortDir=' + ${nextSortDirForPhone} + ${queryParam}}">
+                                        th:href="@{'/user/contacts/all?page=0&size=' + ${contacts.size} + '&sortBy=phoneNumber&sortDir=' + ${nextSortDirForPhone} + ${queryParam}}">
                                         Phone Number
                                         <span th:if="${sortBy} == 'phoneNumber'">
                                             <span th:text="${sortDir} == 'asc' ? '↑' : '↓'"></span>
@@ -68,22 +68,21 @@
                     </div>
                     <label class="sr-only" for="table-search">Search</label>
                     <form method="get" th:action="@{/user/contacts/all}">
-                        <input name="sortBy" th:value="${sortBy}" type="hidden"/>
-                        <input name="sortDir" th:value="${sortDir}" type="hidden"/>
+                        <input name="sortBy" th:value="${sortBy}" type="hidden" />
+                        <input name="sortDir" th:value="${sortDir}" type="hidden" />
                         <div class="relative">
                             <div
-                                    class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                                class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
                                 <svg aria-hidden="true" class="w-4 h-4 text-gray-500 dark:text-gray-400" fill="none"
-                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" stroke="currentColor"
-                                          stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                                 </svg>
                             </div>
                             <input
-                                    class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    id="table-search-users" name="query" placeholder="Search for users"
-                                    th:value="${query}"
-                                    type="text"/>
+                                class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                id="table-search-users" name="query" placeholder="Search for users" th:value="${query}"
+                                type="text" />
                         </div>
                     </form>
                 </div>
@@ -159,14 +158,15 @@
                                 </a>
                             </td>
                             <td class="px-6 py-4">
-                                <a title="Delete Contact">
+                                <button onclick="showWarningModal(this.getAttribute('data-id'))"
+                                    th:data-id="${contact.id}" title="Delete Contact">
                                     <svg class="cursor-pointer w-4 h-4 me-2 fill-current inline-block"
                                         viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
                                         <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                                         <path
                                             d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z" />
                                     </svg>
-                                </a>
+                                </button>
                                 <a title="Edit Contact">
                                     <svg class="cursor-pointer w-4 h-4 fill-current inline-block" viewBox="0 0 512 512"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -175,8 +175,8 @@
                                             d="M368.4 18.3L312.7 74.1 437.9 199.3l55.7-55.7c21.9-21.9 21.9-57.3 0-79.2L447.6 18.3c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8L134.7 140.6c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4L164.7 324.7c-3-6.3-4.7-13.3-4.7-20.7c0-26.5 21.5-48 48-48s48 21.5 48 48s-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.7-9.2L288 94.6z" />
                                     </svg>
                                 </a>
-                                <button onclick="loadContactData(this.getAttribute('data-id'))" th:data-id="${contact.id}"
-                                        title="View Contact">
+                                <button onclick="loadContactData(this.getAttribute('data-id'))"
+                                    th:data-id="${contact.id}" title="View Contact">
                                     <svg class="cursor-pointer ml-2 w-4 h-4 fill-current inline-block"
                                         viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
                                         <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
@@ -194,7 +194,7 @@
                         <!-- Previous Button -->
                         <li th:if="${contacts.hasPrevious()}">
                             <a class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                               th:href="@{'/user/contacts/all?page=' + ${contacts.number - 1} + '&size=' + ${contacts.size}}">
+                                th:href="@{'/user/contacts/all?page=' + ${contacts.number - 1} + '&size=' + ${contacts.size}}">
                                 Previous
                             </a>
                         </li>
@@ -203,8 +203,8 @@
                         <li th:classappend="${index == contacts.number} ? 'bg-blue-500 text-white hover:bg-blue-600 border-blue-500' : ''"
                             th:each="index : ${#numbers.sequence(0, contacts.totalPages - 1)}">
                             <a class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                               th:attr="aria-current=${index == contacts.number} ? 'page' : null"
-                               th:href="@{'/user/contacts/all?page=' + ${index} + '&size=' + ${contacts.size}}">
+                                th:attr="aria-current=${index == contacts.number} ? 'page' : null"
+                                th:href="@{'/user/contacts/all?page=' + ${index} + '&size=' + ${contacts.size}}">
                                 <span th:text="${index + 1}"></span>
                             </a>
                         </li>
@@ -212,7 +212,7 @@
                         <!-- Next Button -->
                         <li th:if="${contacts.hasNext()}">
                             <a class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                               th:href="@{'/user/contacts/all?page=' + ${contacts.number + 1} + '&size=' + ${contacts.size}}">
+                                th:href="@{'/user/contacts/all?page=' + ${contacts.number + 1} + '&size=' + ${contacts.size}}">
                                 Next
                             </a>
                         </li>
@@ -220,11 +220,13 @@
                     </ul>
                 </nav>
             </div>
-            <div th:replace="~{user/contact-modal::contact-modal}"></div>
+            <div th:replace="~{user/contact-modal::view-contact-modal}"></div>
+            <div th:replace="~{user/contact-modal::delete-contact-modal}"></div>
         </div>
     </div>
 
-    <script th:src="@{'/js/contacts.js'}"></script>
+    <script th:src="@{'/js/delete-contact.js'}"></script>
+    <script th:src="@{'/js/view-contacts.js'}"></script>
     <script>console.log("All Contacts Page")</script>
 </body>
 

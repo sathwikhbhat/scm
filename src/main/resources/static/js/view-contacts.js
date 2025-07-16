@@ -1,10 +1,10 @@
-console.log("Hello from contacts.js");
+console.log("Hello from View Contacts.js");
 
 // Select modal element
-const $targetEl = document.getElementById('contact-modal');
+const contactModalElement = document.getElementById('view-contact-modal');
 
 // Flowbite modal options
-const options = {
+const viewModalOptions = {
     placement: 'center',
     backdrop: 'dynamic',
     backdropClasses: 'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
@@ -14,21 +14,21 @@ const options = {
     onToggle: () => console.log('modal has been toggled')
 };
 
-const instanceOptions = {
-    id: 'contact-modal',
+const viewContactConfig = {
+    id: 'view-contact-modal',
     override: true
 };
 
-const modal = new Modal($targetEl, options, instanceOptions);
+const contactModal = new Modal(contactModalElement, viewModalOptions, viewContactConfig);
 
 // Show modal
 function showContactModal() {
-    modal.show();
+    contactModal.show();
 }
 
 // Hide modal
 function hideContactModal() {
-    modal.hide();
+    contactModal.hide();
 }
 
 // Load data into modal dynamically

@@ -5,6 +5,7 @@ import com.sathwikhbhat.scm.entity.User;
 import com.sathwikhbhat.scm.helpers.ResourceNotFoundException;
 import com.sathwikhbhat.scm.repository.ContactRepository;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,11 +13,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
 
 @Transactional
 @Service
+@Slf4j
 public class ContactService {
 
     @Autowired
@@ -33,16 +34,18 @@ public class ContactService {
         contactRepository.save(contact);
     }
 
-    public void deleteContact(String id) {
-        contactRepository.deleteById(id);
+    public void deleteContactById(String id) {
+        try {
+            contactRepository.deleteContactsById(id);
+            log.info("Deleted Contact with ID: " + id);
+        } catch (Exception e) {
+            log.error("Error deleting contact with ID: " + id, e);
+            throw new RuntimeException(e);
+        }
     }
 
     public Contacts updateContact(Contacts contact) {
         return contactRepository.save(contact);
-    }
-
-    public List<Contacts> getAllContacts() {
-        return contactRepository.findAll();
     }
 
     public Page<Contacts> getAllContactsByUser(User user, int page, int size, String sortBy, String sortDir) {

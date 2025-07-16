@@ -22,4 +22,6 @@ public interface ContactRepository extends JpaRepository<Contacts, String> {
     Page<Contacts> findByUserAndNameContainingIgnoreCaseOrEmailContainingIgnoreCaseOrPhoneNumberContainingIgnoreCase(
             User user, String name, String email, String phone, Pageable pageable);
 
+    void deleteContactsById(String id);
+
 }
