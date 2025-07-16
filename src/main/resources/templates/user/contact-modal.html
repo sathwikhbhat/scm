@@ -1,0 +1,64 @@
+<!-- Contact Details Modal -->
+<div aria-hidden="true" class="hidden fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-6"
+     id="contact-modal" tabindex="-1" th:fragment="contact-modal">
+    <div class="relative w-full max-w-4xl bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden">
+
+        <!-- Header: Profile Picture + Name + Favourite -->
+        <div
+                class="flex flex-col md:flex-row items-start gap-6 p-6 border-b border-gray-200 dark:border-gray-700 relative">
+            <img alt="Profile Picture" class="w-32 h-32 rounded-full border-4 border-blue-500 shadow-md object-cover"
+                 id="contact-image" src="">
+
+            <div class="flex-1 pt-5">
+                <h3 class="text-3xl font-bold text-gray-900 dark:text-white" id="contact-name"></h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 truncate" id="contact-email"></p>
+                <p class="text-sm text-gray-600 dark:text-gray-400 truncate mt-1" id="contact-phone"></p>
+            </div>
+
+            <!-- Favourite Tag Top Right -->
+            <div class="absolute top-6 right-6 pt-5">
+                <span id="contact-favourite">Favourite</span>
+            </div>
+        </div>
+
+        <!-- Body: Address and Description Side by Side -->
+        <div class="p-6 text-gray-700 dark:text-gray-300">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                <!-- Address -->
+                <div class="col-span-1">
+                    <label class="font-semibold">Address</label>
+                    <p class="truncate text-sm mt-1" id="contact-address"></p>
+                </div>
+
+                <!-- Description -->
+                <div class="col-span-1">
+                    <label class="font-semibold">Description</label>
+                    <p class="whitespace-pre-line text-sm mt-1" id="contact-description"></p>
+                </div>
+            </div>
+
+            <!-- Links (Full width below) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div>
+                    <label class="font-semibold">Website</label>
+                    <a class="block text-sm text-blue-600 hover:underline truncate mt-1" href="#" id="contact-website"
+                       target="_blank"></a>
+                </div>
+                <div>
+                    <label class="font-semibold">LinkedIn</label>
+                    <a class="block text-sm text-blue-600 hover:underline truncate mt-1" href="#" id="contact-linkedin"
+                       target="_blank"></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer: Close Button -->
+        <div class="flex justify-center p-6 border-t border-gray-200 dark:border-gray-700">
+            <button
+                    class="cursor-pointer bg-blue-700 hover:bg-blue-800 text-white font-medium px-6 py-2 rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-600"
+                    onclick="hideContactModal()" type="button">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
