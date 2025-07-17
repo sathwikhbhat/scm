@@ -1,7 +1,6 @@
 package com.sathwikhbhat.scm.service;
 
 import com.sathwikhbhat.scm.entity.User;
-import com.sathwikhbhat.scm.helpers.ResourceNotFoundException;
 import com.sathwikhbhat.scm.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
@@ -23,64 +22,100 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public User saveUser(User user) {
-        log.info("Saving user: {}", user);
-        user.setUserId(UUID.randomUUID().toString());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(List.of("USER"));
-        return userRepository.save(user);
+    public void saveUser(User user) {
+        try {
+            log.info("Saving user: {}", user);
+            user.setUserId(UUID.randomUUID().toString());
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setRoles(List.of("USER"));
+            userRepository.save(user);
+        } catch (Exception e) {
+            log.error("Error saving user: {}", user, e);
+        }
     }
 
     public User getUserById(String userId) {
-        log.info("Fetching user with ID: {}", userId);
-        return userRepository.findById(userId).orElse(null);
+        try {
+            log.info("Fetching user with ID: {}", userId);
+            return userRepository.findById(userId).orElse(null);
+        } catch (Exception e) {
+            log.error("Error fetching user with ID: {}", userId, e);
+            return null;
+        }
     }
 
     public User getUserByEmail(String email) {
-        log.info("Fetching user with email: {}", email);
-        return userRepository.findByEmail(email.toLowerCase().trim())
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with email: " + email));
+        try {
+            log.info("Fetching user with email: {}", email);
+            return userRepository.findByEmail(email.toLowerCase().trim()).orElse(null);
+        } catch (Exception e) {
+            log.error("Error fetching user with email: {}", email, e);
+            return null;
+        }
     }
 
     public User updateUser(User updatedUser) {
-        User user = userRepository.findById(updatedUser.getUserId())
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + updatedUser.getUserId()));
-        log.info("Updating user: {}", updatedUser);
-        user.setName(updatedUser.getName());
-        user.setEmail(updatedUser.getEmail());
-        user.setPhoneNumber(updatedUser.getPhoneNumber());
-        user.setAbout(updatedUser.getAbout());
-        user.setProfilePictureUrl(updatedUser.getProfilePictureUrl());
-        user.setEnabled(updatedUser.isEnabled());
-        user.setEmailVerified(updatedUser.isEmailVerified());
-        user.setPhoneVerified(updatedUser.isPhoneVerified());
-        user.setProvider(updatedUser.getProvider());
-        user.setProviderId(updatedUser.getProviderId());
+        try {
+            User user = userRepository.findById(updatedUser.getUserId()).orElse(null);
+            log.info("Updating user: {}", updatedUser);
+            assert user != null;
+            user.setName(updatedUser.getName());
+            user.setEmail(updatedUser.getEmail());
+            user.setPhoneNumber(updatedUser.getPhoneNumber());
+            user.setAbout(updatedUser.getAbout());
+            user.setProfilePictureUrl(updatedUser.getProfilePictureUrl());
+            user.setEnabled(updatedUser.isEnabled());
+            user.setEmailVerified(updatedUser.isEmailVerified());
+            user.setPhoneVerified(updatedUser.isPhoneVerified());
+            user.setProvider(updatedUser.getProvider());
+            user.setProviderId(updatedUser.getProviderId());
 
-        return userRepository.save(user);
-
+            return userRepository.save(user);
+        } catch (Exception e) {
+            log.error("Error updating user: {}", updatedUser, e);
+            return null;
+        }
     }
 
     public void deleteUser(String userId) {
-        log.info("Deleting user with ID: {}", userId);
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + userId));
-        userRepository.delete(user);
+        try {
+            log.info("Deleting user with ID: {}", userId);
+            User user = userRepository.findById(userId).orElse(null);
+            assert user != null;
+            userRepository.delete(user);
+        } catch (Exception e) {
+            log.error("Error deleting user with ID: {}", userId, e);
+        }
     }
 
     public boolean userExists(String userId) {
-        log.info("Checking if user exists with ID: {}", userId);
-        return userRepository.existsById(userId);
+        try {
+            log.info("Checking if user exists with ID: {}", userId);
+            return userRepository.existsById(userId);
+        } catch (Exception e) {
+            log.error("Error checking if user exists with ID: {}", userId, e);
+            return false;
+        }
     }
 
     public boolean userExistsByEmail(String email) {
-        log.info("Checking if user exists with email: {}", email);
-        return userRepository.findByEmail(email).isPresent();
+        try {
+            log.info("Checking if user exists with email: {}", email);
+            return userRepository.findByEmail(email).isPresent();
+        } catch (Exception e) {
+            log.error("Error checking if user exists with email: {}", email, e);
+            return  false;
+        }
     }
 
     public List<User> getAllUsers() {
-        log.info("Fetching all users");
-        return userRepository.findAll();
+        try {
+            log.info("Fetching all users");
+            return userRepository.findAll();
+        } catch (Exception e) {
+            log.error("Error fetching all users", e);
+            return null;
+        }
     }
 
 }
