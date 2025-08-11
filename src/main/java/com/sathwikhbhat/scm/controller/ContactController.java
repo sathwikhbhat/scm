@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -90,6 +91,82 @@ public class ContactController {
         return "redirect:/user/contacts/add";
     }
 
+    @GetMapping("/update/{id}")
+    public String editContactView(@PathVariable String id, Model model) {
+        Contacts contact = contactService.getContactById(id);
+        if (contact == null) {
+            model.addAttribute("message", Message.builder()
+                    .content("Contact not found.")
+                    .type(MessageType.ERROR)
+                    .build());
+            return "redirect:/user/contacts/all";
+        }
+
+        ContactForm contactForm = ContactForm.builder()
+                .name(contact.getName())
+                .email(contact.getEmail())
+                .phoneNumber(contact.getPhoneNumber())
+                .address(contact.getAddress())
+                .websiteLink(contact.getWebsiteLink())
+                .linkedinLink(contact.getLinkedinLink())
+                .favourite(contact.isFavourite())
+                .description(contact.getDescription())
+                .build();
+        model.addAttribute("contactForm", contactForm);
+        model.addAttribute("contactId", id);
+        return "user/edit-contacts";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editContact(@PathVariable String id, @Valid @ModelAttribute ContactForm contactForm, BindingResult rBindingResult, HttpSession session, Principal principal) {
+        log.info("Updating contact with ID: {}", id);
+        if (rBindingResult.hasErrors()) {
+            log.error("Error in contact form: {}", rBindingResult.getAllErrors());
+            session.setAttribute("message", Message.builder()
+                    .content("Please correct the errors: ")
+                    .type(MessageType.ERROR)
+                    .build());
+            return "user/edit-contacts";
+        }
+        try {
+            Contacts contact = contactService.getContactById(id);
+            if (contact == null) {
+                session.setAttribute("message", Message.builder()
+                        .content("Contact not found.")
+                        .type(MessageType.ERROR)
+                        .build());
+                return "user/edit-contacts";
+            }
+            contact.setName(contactForm.getName());
+            contact.setEmail(contactForm.getEmail());
+            contact.setFavourite(contactForm.isFavourite());
+            contact.setPhoneNumber(contactForm.getPhoneNumber());
+            contact.setAddress(contactForm.getAddress());
+            contact.setDescription(contactForm.getDescription());
+            contact.setWebsiteLink(contactForm.getWebsiteLink());
+            contact.setLinkedinLink(contactForm.getLinkedinLink());
+            // Update image only if a new one is provided
+            if (contactForm.getContactImage() != null && !contactForm.getContactImage().isEmpty()) {
+                contact.setPictureUrl(imageService.uploadImage(contactForm.getContactImage()));
+            }
+
+            contactService.updateContact(contact);
+        } catch (Exception e) {
+            log.error("Error updating contact: {}", e.getMessage());
+            session.setAttribute("message", Message.builder()
+                    .content("Failed to update contact: " + contactForm.getName())
+                    .type(MessageType.ERROR)
+                    .build());
+            return "user/edit-contacts";
+        }
+
+        session.setAttribute("message", Message.builder()
+                .content("Successfully updated contact: " + contactForm.getName())
+                .type(MessageType.SUCCESS)
+                .build());
+        return "redirect:/user/contacts/update/" + id;
+    }
+
     @GetMapping("/all")
     public String allContacts(@RequestParam(value = "page", defaultValue = "0") int page,
                               @RequestParam(value = "size", defaultValue = "10") int size,
@@ -115,7 +192,6 @@ public class ContactController {
 
         String queryParam = (query != null && !query.isEmpty()) ? "&query=" + UriUtils.encodeQueryParam(query, StandardCharsets.UTF_8) : "";
         model.addAttribute("queryParam", queryParam);
-
 
         model.addAttribute("nextSortDirForName", sortBy.equals("name") && sortDir.equals("asc") ? "desc" : "asc");
         model.addAttribute("nextSortDirForEmail", sortBy.equals("email") && sortDir.equals("asc") ? "desc" : "asc");
