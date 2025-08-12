@@ -164,7 +164,7 @@ public class ContactController {
                 .content("Successfully updated contact: " + contactForm.getName())
                 .type(MessageType.SUCCESS)
                 .build());
-        return "redirect:/user/contacts/update/" + id;
+        return "redirect:/user/contacts/all?openModal=" + id;
     }
 
     @GetMapping("/all")

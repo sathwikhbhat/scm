@@ -73,8 +73,7 @@ function loadContactData(id) {
             }
         })
         .catch(error => {
-            console.error('Error loading contact:', error);
             hideContactModal();
-            alert('Could not load contact details. Please try again later.');
+            console.error('Error loading contact:', error);
         });
 }

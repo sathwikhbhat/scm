@@ -227,6 +227,21 @@
 
     <script th:src="@{'/js/delete-contact.js'}"></script>
     <script th:src="@{'/js/view-contacts.js'}"></script>
+    <script>
+        // Helper to get query parameter
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // On page load, check for openModal param and open modal if present
+        document.addEventListener("DOMContentLoaded", function () {
+            const contactId = getQueryParam("openModal");
+            if (contactId) {
+                loadContactData(contactId);
+            }
+        });
+    </script>
     <script>console.log("All Contacts Page")</script>
 </body>
 
