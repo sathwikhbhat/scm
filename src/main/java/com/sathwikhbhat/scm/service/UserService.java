@@ -59,13 +59,16 @@ public class UserService {
             User user = userRepository.findById(updatedUser.getUserId()).orElse(null);
             log.info("Updating user: {}", updatedUser);
             assert user != null;
-            user.setName(updatedUser.getName());
-            user.setEmail(updatedUser.getEmail());
-            user.setPhoneNumber(updatedUser.getPhoneNumber());
-            user.setProfilePictureUrl(updatedUser.getProfilePictureUrl());
-            user.setEnabled(updatedUser.isEnabled());
-            user.setProvider(updatedUser.getProvider());
-            user.setProviderId(updatedUser.getProviderId());
+            User.builder()
+                    .name(updatedUser.getName())
+                    .email(updatedUser.getEmail())
+                    .phoneNumber(updatedUser.getPhoneNumber())
+                    .profilePictureUrl(updatedUser.getProfilePictureUrl())
+                    .enabled(updatedUser.isEnabled())
+                    .provider(updatedUser.getProvider())
+                    .providerId(updatedUser.getProviderId())
+                    .build();
+
 
             return userRepository.save(user);
         } catch (Exception e) {
@@ -101,7 +104,7 @@ public class UserService {
             return userRepository.findByEmail(email).isPresent();
         } catch (Exception e) {
             log.error("Error checking if user exists with email: {}", email, e);
-            return  false;
+            return false;
         }
     }
 
