@@ -95,7 +95,6 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
                     .provider(provider)
                     .providerId(providerId)
                     .enabled(true)
-                    .emailVerified(true)
                     .roles(List.of("USER"))
                     .build();
 

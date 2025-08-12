@@ -32,12 +32,9 @@ public class User {
     private String email;
     private String password;
     private String phoneNumber;
-    private String about;
     private String profilePictureUrl;
 
     private boolean enabled;
-    private boolean emailVerified;
-    private boolean phoneVerified;
 
     private Providers provider;
     private String providerId;

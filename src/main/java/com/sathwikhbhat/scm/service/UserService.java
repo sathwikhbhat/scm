@@ -62,11 +62,8 @@ public class UserService {
             user.setName(updatedUser.getName());
             user.setEmail(updatedUser.getEmail());
             user.setPhoneNumber(updatedUser.getPhoneNumber());
-            user.setAbout(updatedUser.getAbout());
             user.setProfilePictureUrl(updatedUser.getProfilePictureUrl());
             user.setEnabled(updatedUser.isEnabled());
-            user.setEmailVerified(updatedUser.isEmailVerified());
-            user.setPhoneVerified(updatedUser.isPhoneVerified());
             user.setProvider(updatedUser.getProvider());
             user.setProviderId(updatedUser.getProviderId());
 
