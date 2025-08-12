@@ -1,19 +1,13 @@
 package com.sathwikhbhat.scm.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -38,9 +32,5 @@ public class Contacts {
     @ManyToOne
     @JsonIgnore
     private User user;
-
-    @OneToMany(mappedBy = "contacts", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    @Builder.Default
-    private List<SocialLinks> links = new ArrayList<>();
 
 }
