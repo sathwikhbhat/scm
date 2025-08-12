@@ -94,8 +94,6 @@ public class PageController {
                     .provider(Providers.SELF)
                     .profilePictureUrl("./images/default-profile-pic.png")
                     .enabled(false)
-                    .emailVerified(false)
-                    .phoneVerified(false)
                     .build();
             userService.saveUser(user);
             log.info("User registered successfully: {}", user.getName());
