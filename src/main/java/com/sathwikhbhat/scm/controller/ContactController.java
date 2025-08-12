@@ -43,7 +43,14 @@ public class ContactController {
     private ImageService imageService;
 
     @GetMapping("/add")
-    public String addContactView(Model model) {
+    public String addContactView(Model model, Principal principal) {
+        String email = Helper.getEmailOfLoggedInUser(principal);
+        User loggedInUser = userService.getUserByEmail(email);
+        if(!loggedInUser.isEnabled()) {
+            log.warn("User {} is not enabled, redirecting to verify email page", email);
+            return "user/verify-email";
+        }
+
         model.addAttribute("contactForm", new ContactForm());
         return "user/add-contacts";
     }
@@ -174,16 +181,21 @@ public class ContactController {
                               @RequestParam(value = "sortDir", defaultValue = "asc") String sortDir,
                               @RequestParam(value = "query", required = false) String query,
                               Model model, Principal principal) {
+        String email = Helper.getEmailOfLoggedInUser(principal);
+        User loggedInUser = userService.getUserByEmail(email);
+        if(!loggedInUser.isEnabled()) {
+            log.warn("User {} is not enabled, redirecting to verify email page", email);
+            return "user/verify-email";
+        }
+
         log.info("Fetching all contacts");
-        String name = Helper.getEmailOfLoggedInUser(principal);
-        User user = userService.getUserByEmail(name);
 
         Page<Contacts> contacts;
 
         if (query != null && !query.trim().isEmpty()) {
-            contacts = contactService.searchContacts(user, query.trim(), page, size, sortBy, sortDir);
+            contacts = contactService.searchContacts(loggedInUser, query.trim(), page, size, sortBy, sortDir);
         } else {
-            contacts = contactService.getAllContactsByUser(user, page, size, sortBy, sortDir);
+            contacts = contactService.getAllContactsByUser(loggedInUser, page, size, sortBy, sortDir);
         }
 
         model.addAttribute("contacts", contacts);
