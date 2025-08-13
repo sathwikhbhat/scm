@@ -25,9 +25,11 @@ public class UserService {
     public void saveUser(User user) {
         try {
             log.info("Saving user: {}", user);
-            user.setUserId(UUID.randomUUID().toString());
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            user.setRoles(List.of("USER"));
+            if(user.getUserId() == null || user.getUserId().isEmpty()) {
+                user.setUserId(UUID.randomUUID().toString());
+                user.setPassword(passwordEncoder.encode(user.getPassword()));
+                user.setRoles(List.of("USER"));
+            }
             userRepository.save(user);
         } catch (Exception e) {
             log.error("Error saving user: {}", user, e);
