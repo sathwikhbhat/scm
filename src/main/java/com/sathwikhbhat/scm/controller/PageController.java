@@ -5,6 +5,7 @@ import com.sathwikhbhat.scm.enums.Providers;
 import com.sathwikhbhat.scm.forms.UserForm;
 import com.sathwikhbhat.scm.helpers.Message;
 import com.sathwikhbhat.scm.helpers.MessageType;
+import com.sathwikhbhat.scm.service.EmailService;
 import com.sathwikhbhat.scm.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
@@ -25,6 +26,9 @@ public class PageController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private EmailService emailService;
 
     @RequestMapping
     public String index() {
@@ -105,6 +109,15 @@ public class PageController {
                     .build());
             return "redirect:/signup?error";
         }
+
+        String verificationLink = "http://localhost:8080/verification?userId=";
+        emailService.sendEmail(userForm.getEmail(),
+                "SCM - Account Verification",
+                "Hello " + userForm.getName() + ",\n\n" +
+                        "Thank you for registering with SCM. Please click the link below to verify your account:\n" +
+                        verificationLink + userService.getUserIdByEmail(userForm.getEmail()) + "\n\n" +
+                        "Best regards,\n" +
+                        "SCM Team");
 
         session.setAttribute("message", Message.builder()
                 .content("Registration successful! Please check your email to verify your account.")

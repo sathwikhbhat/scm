@@ -25,7 +25,7 @@ public class UserService {
     public void saveUser(User user) {
         try {
             log.info("Saving user: {}", user);
-            if(user.getUserId() == null || user.getUserId().isEmpty()) {
+            if (user.getUserId() == null || user.getUserId().isEmpty()) {
                 user.setUserId(UUID.randomUUID().toString());
                 user.setPassword(passwordEncoder.encode(user.getPassword()));
                 user.setRoles(List.of("USER"));
@@ -52,6 +52,18 @@ public class UserService {
             return userRepository.findByEmail(email.toLowerCase().trim()).orElse(null);
         } catch (Exception e) {
             log.error("Error fetching user with email: {}", email, e);
+            return null;
+        }
+    }
+
+    public String getUserIdByEmail(String email) {
+        try {
+            log.info("Fetching user ID for email: {}", email);
+            User user = userRepository.findByEmail(email).orElse(null);
+            assert user != null;
+            return user.getUserId();
+        } catch (Exception e) {
+            log.error("Error fetching user ID for email: {}", email, e);
             return null;
         }
     }
