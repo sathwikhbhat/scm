@@ -44,13 +44,6 @@ public class ContactController {
 
     @GetMapping("/add")
     public String addContactView(Model model, Principal principal) {
-        String email = Helper.getEmailOfLoggedInUser(principal);
-        User loggedInUser = userService.getUserByEmail(email);
-        if(!loggedInUser.isEnabled()) {
-            log.warn("User {} is not enabled, redirecting to verify email page", email);
-            return "user/verify-email";
-        }
-
         model.addAttribute("contactForm", new ContactForm());
         return "user/add-contacts";
     }
@@ -183,10 +176,6 @@ public class ContactController {
                               Model model, Principal principal) {
         String email = Helper.getEmailOfLoggedInUser(principal);
         User loggedInUser = userService.getUserByEmail(email);
-        if(!loggedInUser.isEnabled()) {
-            log.warn("User {} is not enabled, redirecting to verify email page", email);
-            return "user/verify-email";
-        }
 
         log.info("Fetching all contacts");
 
