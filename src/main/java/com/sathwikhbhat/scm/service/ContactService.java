@@ -51,15 +51,13 @@ public class ContactService {
         }
     }
 
-    public Contacts updateContact(Contacts contact) {
+    public void updateContact(Contacts contact) {
         try {
             contactRepository.save(contact);
             log.info("Updated Contact with ID: {}", contact.getId());
-            return contact;
         } catch (Exception e) {
             log.error("Error saving contact with ID: {}", contact.getId(), e);
         }
-        return null;
     }
 
     public Page<Contacts> getAllContactsByUser(User user, int page, int size, String sortBy, String sortDir) {

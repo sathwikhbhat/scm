@@ -68,50 +68,6 @@ public class UserService {
         }
     }
 
-    public User updateUser(User updatedUser) {
-        try {
-            User user = userRepository.findById(updatedUser.getUserId()).orElse(null);
-            log.info("Updating user: {}", updatedUser);
-            assert user != null;
-            User.builder()
-                    .name(updatedUser.getName())
-                    .email(updatedUser.getEmail())
-                    .phoneNumber(updatedUser.getPhoneNumber())
-                    .profilePictureUrl(updatedUser.getProfilePictureUrl())
-                    .enabled(updatedUser.isEnabled())
-                    .provider(updatedUser.getProvider())
-                    .providerId(updatedUser.getProviderId())
-                    .build();
-
-
-            return userRepository.save(user);
-        } catch (Exception e) {
-            log.error("Error updating user: {}", updatedUser, e);
-            return null;
-        }
-    }
-
-    public void deleteUser(String userId) {
-        try {
-            log.info("Deleting user with ID: {}", userId);
-            User user = userRepository.findById(userId).orElse(null);
-            assert user != null;
-            userRepository.delete(user);
-        } catch (Exception e) {
-            log.error("Error deleting user with ID: {}", userId, e);
-        }
-    }
-
-    public boolean userExists(String userId) {
-        try {
-            log.info("Checking if user exists with ID: {}", userId);
-            return userRepository.existsById(userId);
-        } catch (Exception e) {
-            log.error("Error checking if user exists with ID: {}", userId, e);
-            return false;
-        }
-    }
-
     public boolean userExistsByEmail(String email) {
         try {
             log.info("Checking if user exists with email: {}", email);
@@ -119,16 +75,6 @@ public class UserService {
         } catch (Exception e) {
             log.error("Error checking if user exists with email: {}", email, e);
             return false;
-        }
-    }
-
-    public List<User> getAllUsers() {
-        try {
-            log.info("Fetching all users");
-            return userRepository.findAll();
-        } catch (Exception e) {
-            log.error("Error fetching all users", e);
-            return null;
         }
     }
 
