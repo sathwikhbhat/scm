@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
+
 @Slf4j
 @Transactional
 @Controller
@@ -55,8 +57,13 @@ public class PageController {
     }
 
     @RequestMapping("/login")
-    public String loginPage() {
+    public String loginPage(Principal principal) {
         log.info("Login page");
+        if (principal != null)
+        {
+            log.info("User already logged in: {}", principal.getName());
+            return "redirect:/dashboard";
+        }
         return "login";
     }
 
