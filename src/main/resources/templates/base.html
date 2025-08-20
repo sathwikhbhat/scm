@@ -22,9 +22,7 @@
 		<section th:replace="${content}"></section>
 	</div>
 	<!--Common Footer-->
-	<div th:unless="${user}">
-		<div class="mt-auto" th:replace="~{navbar::footer}"></div>
-	</div>
+	<div class="mt-auto" th:replace="~{navbar::footer}"></div>
 	<script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 	<th:block th:replace="${script}"></th:block>
 </body>

@@ -6,10 +6,69 @@
 </head>
 
 <body>
-	<div id="content" class="pl-64 pt-24">
-		<h1>Welcome to the Services Page</h1>
+	<div class="w-full min-h-[80vh] pt-32 px-4 md:px-16 lg:px-32 flex flex-col items-center justify-center"
+		id="content">
+		<h1 class="text-5xl md:text-6xl font-extrabold mb-6 text-purple-600 text-center drop-shadow-lg">Our Services
+		</h1>
+		<p class="mb-8 text-2xl md:text-3xl text-gray-700 dark:text-gray-300 text-center max-w-4xl">SCM offers a suite
+			of powerful features to help you manage your contacts, profile, and data securely and efficiently.</p>
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl mb-12">
+			<div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 flex flex-col items-center">
+				<!-- Magnifying Glass Icon -->
+				<svg class="w-12 h-12 text-green-500 mb-4" fill="none" stroke="currentColor" stroke-width="2"
+					viewBox="0 0 24 24">
+					<circle cx="11" cy="11" r="8" />
+					<line x1="21" x2="16.65" y1="21" y2="16.65" />
+				</svg>
+				<h3 class="text-xl font-bold mb-2">Advanced Search</h3>
+				<p class="text-gray-600 dark:text-gray-300 text-center">Quickly find contacts with powerful search and
+					filtering options.</p>
+			</div>
+			<div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 flex flex-col items-center">
+				<!-- Cloud Icon -->
+				<svg class="w-12 h-12 text-blue-500 mb-4" fill="none" stroke="currentColor" stroke-width="2"
+					viewBox="0 0 24 24">
+					<path d="M17.5 19a4.5 4.5 0 0 0 0-9c-.2 0-.4 0-.6.03A6.5 6.5 0 1 0 6.5 19h11z" />
+				</svg>
+				<h3 class="text-xl font-bold mb-2">Cloud Integration</h3>
+				<p class="text-gray-600 dark:text-gray-300 text-center">Sync your contacts and profile images securely
+					with cloud storage providers.</p>
+			</div>
+			<div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 flex flex-col items-center">
+				<!-- Users Collaboration Icon -->
+				<svg class="w-12 h-12 text-purple-500 mb-4" fill="none" stroke="currentColor" stroke-width="2"
+					viewBox="0 0 24 24">
+					<circle cx="7" cy="12" r="3" />
+					<circle cx="17" cy="12" r="3" />
+					<path d="M7 15c-2.67 0-8 1.34-8 4v2h22v-2c0-2.66-5.33-4-8-4z" />
+				</svg>
+				<h3 class="text-xl font-bold mb-2">Collaboration Tools</h3>
+				<p class="text-gray-600 dark:text-gray-300 text-center">Share contacts and collaborate with your team in
+					real time.</p>
+			</div>
+		</div>
+		<div class="w-full max-w-5xl mx-auto mb-8">
+			<h2 class="text-3xl font-bold mb-4 text-purple-700 dark:text-purple-400 text-center">More Features</h2>
+			<ul class="grid grid-cols-1 md:grid-cols-2 gap-6 list-none text-lg text-gray-700 dark:text-gray-300">
+				<li class="flex items-center"><span class="inline-block w-3 h-3 bg-purple-500 rounded-full mr-3"></span>
+					Responsive UI for all devices</li>
+				<li class="flex items-center"><span class="inline-block w-3 h-3 bg-purple-500 rounded-full mr-3"></span>
+					Cloud storage for profile images</li>
+				<li class="flex items-center"><span class="inline-block w-3 h-3 bg-purple-500 rounded-full mr-3"></span>
+					OAuth login and email verification</li>
+				<li class="flex items-center"><span class="inline-block w-3 h-3 bg-purple-500 rounded-full mr-3"></span>
+					24/7 support and regular updates</li>
+			</ul>
+		</div>
+		<div class="w-full max-w-4xl mx-auto text-center mt-8">
+			<h2 class="text-2xl font-bold mb-2 text-blue-700 dark:text-blue-400">Ready to experience SCM?</h2>
+			<p class="mb-4 text-lg text-gray-700 dark:text-gray-300">Sign up now and unlock all features for free!</p>
+			<a class="inline-block bg-purple-600 text-white px-8 py-4 rounded-xl font-bold text-xl shadow-lg hover:bg-purple-700 transition-transform transform hover:scale-105"
+				href="/signup">Create
+				Your Free Account</a>
+		</div>
 	</div>
-	<script>console.log("Services Page")</script>
+	<script>console.log("Services Page Loaded")</script>
 </body>
 
 </html>

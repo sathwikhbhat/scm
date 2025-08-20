@@ -6,10 +6,83 @@
 </head>
 
 <body>
-	<div id="content" class="pl-64 pt-24">
-		<h1>Welcome to the Home Page</h1>
+	<div class="w-full min-h-[80vh] pt-32 px-4 md:px-16 lg:px-32 flex flex-col items-center justify-center"
+		id="content">
+		<h1 class="text-5xl md:text-6xl font-extrabold mb-6 text-green-600 text-center drop-shadow-lg">Smart Contact
+			Manager</h1>
+		<p class="mb-8 text-2xl md:text-3xl text-gray-700 dark:text-gray-300 text-center max-w-4xl">Effortlessly
+			organize, manage, and secure your contacts with SCM. Designed for modern users who value privacy, speed, and
+			simplicity.</p>
+		<div class="flex flex-col md:flex-row justify-center gap-6 mb-10">
+			<a class="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold text-xl shadow-lg hover:bg-blue-700 transition-transform transform hover:scale-105"
+				href="/signup">Get
+				Started for Free</a>
+			<a class="bg-gray-200 text-gray-900 px-8 py-4 rounded-xl font-bold text-xl shadow-lg hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 transition-transform transform hover:scale-105"
+				href="/login">Login</a>
+		</div>
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl mb-12">
+			<div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 flex flex-col items-center">
+				<!-- Address Book Icon -->
+				<svg class="w-12 h-12 text-green-500 mb-4" fill="none" stroke="currentColor" stroke-width="2"
+					viewBox="0 0 24 24">
+					<rect height="16" rx="2" width="16" x="4" y="4" />
+					<path d="M8 8h8M8 12h8M8 16h4" />
+				</svg>
+				<h3 class="text-xl font-bold mb-2">Easy Contact Management</h3>
+				<p class="text-gray-600 dark:text-gray-300 text-center">Add, edit, and organize contacts with a clean,
+					intuitive interface.</p>
+			</div>
+			<div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 flex flex-col items-center">
+				<!-- Shield Lock Icon -->
+				<svg class="w-12 h-12 text-blue-500 mb-4" fill="none" stroke="currentColor" stroke-width="2"
+					viewBox="0 0 24 24">
+					<path d="M12 2l7 4v6c0 5-3.5 9.74-7 10-3.5-.26-7-5-7-10V6l7-4z" />
+					<circle cx="12" cy="12" r="3" />
+					<path d="M12 15v-3" />
+				</svg>
+				<h3 class="text-xl font-bold mb-2">Secure & Private</h3>
+				<p class="text-gray-600 dark:text-gray-300 text-center">Your data is protected with robust
+					authentication and encryption.</p>
+			</div>
+			<div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 flex flex-col items-center">
+				<!-- Devices Icon -->
+				<svg class="w-12 h-12 text-purple-500 mb-4" fill="none" stroke="currentColor" stroke-width="2"
+					viewBox="0 0 24 24">
+					<rect height="15" rx="2" width="20" x="2" y="7" />
+					<rect height="5" rx="1" width="10" x="7" y="2" />
+				</svg>
+				<h3 class="text-xl font-bold mb-2">Modern Responsive Design</h3>
+				<p class="text-gray-600 dark:text-gray-300 text-center">Enjoy a beautiful experience on any device,
+					light or dark mode.</p>
+			</div>
+		</div>
+		<div class="w-full max-w-5xl mx-auto mb-8">
+			<h2 class="text-3xl font-bold mb-4 text-green-700 dark:text-green-400 text-center">Why Choose SCM?</h2>
+			<ul class="grid grid-cols-1 md:grid-cols-2 gap-6 list-none text-lg text-gray-700 dark:text-gray-300">
+				<li class="flex items-center"><span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-3"></span>
+					Free to use, no hidden fees</li>
+				<li class="flex items-center"><span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-3"></span>
+					Fast, secure, and reliable</li>
+				<li class="flex items-center"><span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-3"></span>
+					Built with Spring Boot, Thymeleaf, and Tailwind CSS</li>
+				<li class="flex items-center"><span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-3"></span>
+					Email verification and OAuth login</li>
+				<li class="flex items-center"><span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-3"></span>
+					Cloud storage for profile images</li>
+				<li class="flex items-center"><span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-3"></span>
+					24/7 support and regular updates</li>
+			</ul>
+		</div>
+		<div class="w-full max-w-4xl mx-auto text-center mt-8">
+			<h2 class="text-2xl font-bold mb-2 text-blue-700 dark:text-blue-400">Get Started Today!</h2>
+			<p class="mb-4 text-lg text-gray-700 dark:text-gray-300">Sign up now and experience the next generation of
+				contact management.</p>
+			<a class="inline-block bg-green-600 text-white px-8 py-4 rounded-xl font-bold text-xl shadow-lg hover:bg-green-700 transition-transform transform hover:scale-105"
+				href="/signup">Create
+				Your Free Account</a>
+		</div>
 	</div>
-	<script>console.log("Home Page")</script>
+	<script>console.log("Home Page Loaded")</script>
 </body>
 
 </html>
