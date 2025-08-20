@@ -10,6 +10,7 @@
         <div th:replace="~{user/sidebar::sidebar}"></div>
 
         <div class="contacts mx-15">
+            <div th:replace="~{message::messageBox}"></div>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <div
                     class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
@@ -222,11 +223,34 @@
             </div>
             <div th:replace="~{user/contact-modal::view-contact-modal}"></div>
             <div th:replace="~{user/contact-modal::delete-contact-modal}"></div>
+            <div class="mt-8 flex justify-center">
+                <button id="exportExcelBtn"
+                    class="cursor-pointer items-center px-5 py-2 bg-green-600 text-white text-base font-semibold rounded-lg shadow transition-all duration-200 hover:bg-green-700 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-400">
+                    + Export to Excel
+                </button>
+            </div>
         </div>
     </div>
 
     <script th:src="@{'/js/delete-contact.js'}"></script>
     <script th:src="@{'/js/view-contacts.js'}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@linways/table-to-excel@1.0.4/dist/tableToExcel.min.js"></script>
+    <script>
+        console.log('TableToExcel loaded:', typeof window.TableToExcel !== 'undefined');
+        document.getElementById('exportExcelBtn').addEventListener('click', function () {
+            const table = document.querySelector('table');
+            if (window.TableToExcel && table) {
+                TableToExcel.convert(table, {
+                    name: 'contacts.xlsx',
+                    sheet: {
+                        name: 'Contacts'
+                    }
+                });
+            } else {
+                alert('Export library not loaded. Please check your internet connection.');
+            }
+        });
+    </script>
     <script>
         // Helper to get query parameter
         function getQueryParam(param) {
