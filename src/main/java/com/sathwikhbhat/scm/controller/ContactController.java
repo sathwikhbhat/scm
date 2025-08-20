@@ -1,17 +1,8 @@
 package com.sathwikhbhat.scm.controller;
 
-import com.sathwikhbhat.scm.entity.Contacts;
-import com.sathwikhbhat.scm.entity.User;
-import com.sathwikhbhat.scm.forms.ContactForm;
-import com.sathwikhbhat.scm.helpers.Helper;
-import com.sathwikhbhat.scm.helpers.Message;
-import com.sathwikhbhat.scm.helpers.MessageType;
-import com.sathwikhbhat.scm.service.ContactService;
-import com.sathwikhbhat.scm.service.ImageService;
-import com.sathwikhbhat.scm.service.UserService;
-import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
+import java.nio.charset.StandardCharsets;
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -25,8 +16,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 
-import java.nio.charset.StandardCharsets;
-import java.security.Principal;
+import com.sathwikhbhat.scm.entity.Contacts;
+import com.sathwikhbhat.scm.entity.User;
+import com.sathwikhbhat.scm.forms.ContactForm;
+import com.sathwikhbhat.scm.helpers.Helper;
+import com.sathwikhbhat.scm.helpers.Message;
+import com.sathwikhbhat.scm.helpers.MessageType;
+import com.sathwikhbhat.scm.service.ContactService;
+import com.sathwikhbhat.scm.service.ImageService;
+import com.sathwikhbhat.scm.service.UserService;
+
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
@@ -49,7 +51,8 @@ public class ContactController {
     }
 
     @PostMapping("/save")
-    public String saveContact(@Valid @ModelAttribute ContactForm contactForm, BindingResult rBindingResult, HttpSession session, Principal principal) {
+    public String saveContact(@Valid @ModelAttribute ContactForm contactForm, BindingResult rBindingResult,
+            HttpSession session, Principal principal) {
         log.info("Saving contact: {}", contactForm.getName());
         if (rBindingResult.hasErrors()) {
             log.error("Error in contact form: {}", rBindingResult.getAllErrors());
@@ -92,11 +95,20 @@ public class ContactController {
     }
 
     @GetMapping("/update/{id}")
-    public String editContactView(@PathVariable String id, Model model) {
+    public String editContactView(@PathVariable String id, Model model, Principal principal) {
         Contacts contact = contactService.getContactById(id);
         if (contact == null) {
             model.addAttribute("message", Message.builder()
                     .content("Contact not found.")
+                    .type(MessageType.ERROR)
+                    .build());
+            return "redirect:/user/contacts/all";
+        }
+        // Check Ownership
+        String loggedInUserEmail = Helper.getEmailOfLoggedInUser(principal);
+        if (contact.getUser() == null || !contact.getUser().getEmail().equals(loggedInUserEmail)) {
+            model.addAttribute("message", Message.builder()
+                    .content("You do not have permission to edit this contact.")
                     .type(MessageType.ERROR)
                     .build());
             return "redirect:/user/contacts/all";
@@ -118,7 +130,8 @@ public class ContactController {
     }
 
     @PostMapping("/edit/{id}")
-    public String editContact(@PathVariable String id, @Valid @ModelAttribute ContactForm contactForm, BindingResult rBindingResult, HttpSession session, Principal principal) {
+    public String editContact(@PathVariable String id, @Valid @ModelAttribute ContactForm contactForm,
+            BindingResult rBindingResult, HttpSession session, Principal principal) {
         log.info("Updating contact with ID: {}", id);
         if (rBindingResult.hasErrors()) {
             log.error("Error in contact form: {}", rBindingResult.getAllErrors());
@@ -169,11 +182,11 @@ public class ContactController {
 
     @GetMapping("/all")
     public String allContacts(@RequestParam(value = "page", defaultValue = "0") int page,
-                              @RequestParam(value = "size", defaultValue = "10") int size,
-                              @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
-                              @RequestParam(value = "sortDir", defaultValue = "asc") String sortDir,
-                              @RequestParam(value = "query", required = false) String query,
-                              Model model, Principal principal) {
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
+            @RequestParam(value = "sortDir", defaultValue = "asc") String sortDir,
+            @RequestParam(value = "query", required = false) String query,
+            Model model, Principal principal) {
         String email = Helper.getEmailOfLoggedInUser(principal);
         User loggedInUser = userService.getUserByEmail(email);
 
@@ -191,12 +204,15 @@ public class ContactController {
         model.addAttribute("sortBy", sortBy);
         model.addAttribute("sortDir", sortDir);
 
-        String queryParam = (query != null && !query.isEmpty()) ? "&query=" + UriUtils.encodeQueryParam(query, StandardCharsets.UTF_8) : "";
+        String queryParam = (query != null && !query.isEmpty())
+                ? "&query=" + UriUtils.encodeQueryParam(query, StandardCharsets.UTF_8)
+                : "";
         model.addAttribute("queryParam", queryParam);
 
         model.addAttribute("nextSortDirForName", sortBy.equals("name") && sortDir.equals("asc") ? "desc" : "asc");
         model.addAttribute("nextSortDirForEmail", sortBy.equals("email") && sortDir.equals("asc") ? "desc" : "asc");
-        model.addAttribute("nextSortDirForPhone", sortBy.equals("phoneNumber") && sortDir.equals("asc") ? "desc" : "asc");
+        model.addAttribute("nextSortDirForPhone",
+                sortBy.equals("phoneNumber") && sortDir.equals("asc") ? "desc" : "asc");
 
         return "user/all-contacts";
     }
