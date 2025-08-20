@@ -35,14 +35,14 @@ public class SecurityConfig {
                 .formLogin(login -> login
                         .loginPage("/login")
                         .loginProcessingUrl("/authenticateUser")
-                        .defaultSuccessUrl("/user/dashboard")
+                        .defaultSuccessUrl("/user/profile")
                         .failureUrl("/login?error=true")
                         .failureHandler(customAuthFailureHandler)
                         .usernameParameter("email")
                         .passwordParameter("password"))
                 .oauth2Login(oauth -> oauth
                         .loginPage("/login")
-                        .defaultSuccessUrl("/user/dashboard")
+                        .defaultSuccessUrl("/user/profile")
                         .successHandler(customOAuth2SuccessHandler)
                         .failureUrl("/login?error=true"))
                 .logout(logout -> logout

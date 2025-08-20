@@ -1,16 +1,7 @@
 package com.sathwikhbhat.scm.controller;
 
-import com.sathwikhbhat.scm.entity.User;
-import com.sathwikhbhat.scm.enums.Providers;
-import com.sathwikhbhat.scm.forms.UserForm;
-import com.sathwikhbhat.scm.helpers.Message;
-import com.sathwikhbhat.scm.helpers.MessageType;
-import com.sathwikhbhat.scm.service.EmailService;
-import com.sathwikhbhat.scm.service.UserService;
-import jakarta.servlet.http.HttpSession;
-import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +10,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.security.Principal;
+import com.sathwikhbhat.scm.entity.User;
+import com.sathwikhbhat.scm.enums.Providers;
+import com.sathwikhbhat.scm.forms.UserForm;
+import com.sathwikhbhat.scm.helpers.Message;
+import com.sathwikhbhat.scm.helpers.MessageType;
+import com.sathwikhbhat.scm.service.EmailService;
+import com.sathwikhbhat.scm.service.UserService;
+
+import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Transactional
@@ -62,7 +64,7 @@ public class PageController {
         if (principal != null)
         {
             log.info("User already logged in: {}", principal.getName());
-            return "redirect:/dashboard";
+            return "redirect:/profile";
         }
         return "login";
     }

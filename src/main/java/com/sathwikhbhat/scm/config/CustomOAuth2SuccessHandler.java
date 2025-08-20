@@ -133,6 +133,6 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
         }
 
         log.info("OAuth login successful for user: {} [{}]", email, provider.name());
-        response.sendRedirect("/user/dashboard");
+        response.sendRedirect("/user/profile");
     }
 }
