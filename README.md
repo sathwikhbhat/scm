@@ -1,7 +1,14 @@
 # Smart Contact Manager (SCM)
 
-A modern, secure web application that transforms how you manage your contacts. Built with enterprise-grade technologies and designed with privacy-first principles, SCM delivers a seamless contact management experience across all devices.
+A modern, privacy-first web application that redefines how you manage your contacts.  
+Built with enterprise-grade technologies, SCM offers secure, intelligent, and seamless contact management—accessible anywhere, anytime.
 
+## Screenshots
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a98076a7-00d0-4bf1-a079-c51796dd80be" alt="Landing Page - Dark Theme" width="45%"/>
+  <img src="https://github.com/user-attachments/assets/7f6467ad-6fa9-497e-90ac-a593ded885b0" alt="Landing Page - Light Theme" width="45%"/>
+</p>
 
 ## Key Features
 
